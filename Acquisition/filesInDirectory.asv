@@ -1,6 +1,0 @@
-function fileList = filesInDirectory(directoryName)
-
-    list = dir(directoryName);
-    list(1:2) = [];
-    
-    for file = 
