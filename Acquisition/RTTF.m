@@ -91,10 +91,11 @@ global daqParams;
     data.X     = acquiredData(:,6);
     data.Odor  = acquiredData(:,7);
 
-    save([filename,'.mat'],'data', 'daqParams', 'trialStructureName','trialStructureList','histogramBounds','TimeRun');
+    settings = tfSettings();
+    save([settings.dataDir,filename,'.mat'],'data', 'daqParams', 'trialStructureName','trialStructureList','histogramBounds','TimeRun');
     disp('... Finished trial.');
     disp(['Wrote: ',filename,'.mat']);
-    analyzeRTTF([filename,'.mat'],comment);
+    analyzeRTTF([settings.dataDir,filename,'.mat'],comment);
 
     disp('----------------------------------------------------------');
     disp(['WBA Diff Mean:    ', num2str(mean(data.LAmp - data.RAmp))]);
