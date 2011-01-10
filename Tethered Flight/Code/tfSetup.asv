@@ -1,0 +1,27 @@
+% tfSetup.m
+
+disp('Starting camera...');
+vid = setupCamera();
+cam(450);
+set(gcf, 'Position',[1198 384 480 640]);
+vid2 = setupCamera(2);
+
+disp('Starting flight computer...');
+startArd;
+disp('Programming panels for single box [6,32,1] mode...');
+pause(3);
+progBox;
+pause(3);
+ardSetBox(5,32,1)
+disp('Running X output calibration...');
+calibrateXOutput();
+
+RTTF('initClosedLoop','',[]);
+
+disp('----------------------------------');
+disp('   Tethered flight ready to run.  ');
+disp('----------------------------------');
+disp(' ');
+
+aPipeFlusher;
+

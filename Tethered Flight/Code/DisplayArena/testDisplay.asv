@@ -1,0 +1,13 @@
+% testDisplay.m
+
+clear all;
+
+arena = drawBG();
+
+% box = drawBox(45, 6, 6, 14, arena);
+% grate = drawBoxArray(45, 8, 32, 1, 16, arena);
+%T = draw2T(45,3,11,14, arena);
+cuts = drawCutOuts(arena);
+
+
+

@@ -1,0 +1,27 @@
+
+% initClosedLoop.m
+
+% Constants
+global ts;
+
+center = 0;
+
+% Format: {time, visStim} 
+%          [Mode, K0, K1, K2]
+visStim0 = [1, 0,  0, center];
+%visStimN = [1, 0, -1, center];
+visStimN = [1, 180, 0, 0];
+LaserOn  = '0000';
+LaserOff = '0D0D';
+olf1 = '00D0';
+olf2 = 'D000';
+
+histogramBounds = [1,6];
+
+trialStructureList = [...
+        {0,    visStimN, LaserOff, '0000','0000',''};...     %nb. First line is initial settingss
+        {1,    visStimN, LaserOff, olf1,olf2,''};...
+        {6,    visStimN, LaserOff, '0000','0000',''};...
+    ];
+
+    

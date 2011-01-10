@@ -1,0 +1,43 @@
+% findCenter.m
+function findCenter(obj, event, runTime)
+    
+    global trackingParams;
+
+    % If there are no args, start the timer
+    if (nargin == 0)
+        timeToRun = 30; % Time to collect centering data in sec
+
+        progVerticalGrate;
+        ardSetStripes(8,16);
+        ardSetArenaBindings([1,-40,0,0]);
+
+        trackingParams.ringBuffer.size = 30*(timeToRun + 2);
+        trackingParams.ringBuffer.idx = 1;
+
+        ardDispOn();
+
+        myTimer = timer('ExecutionMode','singleShot',...
+            'StartDelay', timeToRun,...
+            'TimerFcn', {'findCenter', timeToRun});
+        ardDispOn();
+        start(myTimer);     
+    else % If there are args, then it's a callback
+        ardDispOff;
+        ringBuffer = trackingParams.ringBuffer;
+        
+        Xs = ringBuffer.buffer(1:(30*runTime), 1);
+        Ys = ringBuffer.buffer(1:(30*runTime), 2);
+        % Remove untracked points
+        Xs(isnan(Xs)) = [];
+        Ys(isnan(Ys)) = [];
+        
+        trackingParams.rotationCenter = [mean(Xs), mean(Ys)];
+        
+        figure(2);
+        scatter(ringBuffer.buffer(1:(30*runTime),1), ...
+            ringBuffer.buffer(1:(30*runTime), 2),'b.');
+        hold on;
+        scatter(trackingParams.rotationCenter(1), ...
+            trackingParams.rotationCenter(2),'ro');
+        figure(trackingParams.previewFigure);
+    end

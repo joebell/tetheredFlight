@@ -1,0 +1,19 @@
+function box = drawBox(X, width, length, height, color, Display)
+
+maxR = Display.maxR;
+minR = Display.minR;
+numRPanels = Display.numRPanels;
+numHPanels = Display.numHPanels;
+
+bottom = minR + height - 1;
+top = minR + height + length - 1;
+left = X*2*pi/360;
+right = X*2*pi/360 - width*2*pi/(numRPanels*8);
+angles = left:a:right;
+
+[X, Y] = pol2cart([left left right right] + pi/numRPanels,[bottom top top bottom]);
+box = fill(X, Y, color,'EdgeColor','k');
+
+
+
+

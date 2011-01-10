@@ -1,0 +1,15 @@
+% flushPipes
+
+ardDispOn;
+for i=1:100    
+    ardWriteParam(ardVar.Olf1Armed, '0000');
+    ardWriteParam(ardVar.Olf2Armed, '0000');
+    ardFlip;
+    pause(5);
+    
+    ardWriteParam(ardVar.Olf1Armed, '0000');
+    ardWriteParam(ardVar.Olf2Armed, '0000');
+    ardFlip;
+    ardWriteParam(ardVar.Olf1Armed, '0000');
+    ardWriteParam(ardVar.Olf2Armed, '0000');
+    ardFlip;

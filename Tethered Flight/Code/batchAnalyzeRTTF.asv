@@ -1,0 +1,71 @@
+% batchAnalyzeRTTF.m
+
+clear all;
+
+% fileList = {'../Data/Apr25/RTTF100425-115040.mat'};
+
+fileList = {'../Data/Jul16/RTTF100716-105943.mat', ...
+            '../Data/Jul16/RTTF100716-112325.mat', ...
+            '../Data/Jul16/RTTF100716-11.mat', ...
+            '../Data/Jul16/RTTF100716-112325.mat', ...
+            '../Data/Jul15/RTTF100715-111719.mat', ...
+            '../Data/Jul15/RTTF100715-114354.mat', ...
+            '../Data/Jul15/RTTF100715-134948.mat', ...
+            '../Data/Jul15/RTTF100715-145655.mat'};
+        
+% fileList = filesIndirectory('../Data/Apr25/batch/');
+smoothingWindow = 4; % Boxcar window, in seconds
+        
+tOffset = -.129; % Timing offset
+rateError = .36; % Correction for DAQ clock
+    
+for file=1:size(fileList,2)
+    
+    
+    load(fileList{file});
+    nSamples = size(data.LAmp,1);
+    data.time = ((1:nSamples) ./ (daqParams.SampleRate + rateError)) + tOffset;
+    [data.smoothX, data.wrappedX] = smoothUnwrap(data.X, daqParams.xOutputCal, 0);
+    
+    sampleBounds = round(histogramBounds * daqParams.SampleRate) + 1;
+    numHist = size(histogramBounds,1);
+    numParts = size(histogramBounds,2);
+
+    for i=numHist:-1:1
+        partsList = [];
+        for j=1:2:numParts
+            partsList = cat(2, partsList, sampleBounds(i,j):sampleBounds(i,j+1));
+        end
+        % 2 second boxcar filter on angle data
+        smoothX = smooth(cos(data.wrappedX(:)*2*pi/360),daqParams.SampleRate*smoothingWindow,'moving');
+        smoothY = smooth(sin(data.wrappedX(:)*2*pi/360),daqParams.SampleRate*smoothingWindow,'moving');
+        
+        % Append additional datapoints
+        if (file == 1)
+            Xvector{i} = smoothX(partsList);
+            Yvector{i} = smoothY(partsList);
+        else
+            Xvector{i} = cat(1,Xvector{i},smoothX(partsList));
+            Yvector{i} = cat(1,Yvector{i},smoothY(partsList));
+        end
+    end 
+    
+    disp(['Analyzed file ',num2str(file),'.']);
+end
+
+figure();
+ for plotNum = 1:size(histogramBounds,1)
+        clear('bins','n');
+        subplot(1,size(histogramBounds,1),plotNum);  
+        N = hist3([Xvector{plotNum},Yvector{plotNum}],{[-1.2:.05:1.2],[-1.2:.05:1.2]});
+        % N = hist3(randn(10000,2),[20,20]);       
+        myMap = hot;
+        % colormap(myMap(end:-1:1,:));  % Inverts colormap...
+        colormap(hot);
+        h = pcolor( N' / sum(N(:)));
+        set(h,'EdgeColor','none');
+        % colorbar;
+        axis square;
+        set(gca,'XTick',[]);
+        set(gca,'YTick',[]);
+ end

@@ -1,0 +1,43 @@
+% closedLoop.m
+
+% Constants
+global ts;
+
+center = 50;
+
+% Format: {time, visStim}
+%          [Mode, K0, K1, K2]
+visStim0 = [1, 0, 0,  center];
+visStimN = [1, 0, -1, center];
+rand1 = [0, rand(1)*360, 0, 0];
+rand2 = [0, rand(1)*360, 0, 0];
+rand3 = [0, rand(1)*360, 0, 0];
+rand4 = [0, rand(1)*360, 0, 0];
+rand5 = [0, rand(1)*360, 0, 0];
+rand6 = [0, rand(1)*360, 0, 0];
+
+LaserOn  = '0000';
+LaserOff = '0000';
+olf1 = '0000';
+olf2 = '0000';
+
+histogramBounds = [10 , 70; 70 , 130];
+
+trialStructureList = [...
+        {0,   rand1, LaserOff,olf1,olf2};...     %nb. First line is initial settingss
+        {1,   visStimN, LaserOff,olf1,olf2};...
+        {20,  rand2, LaserOff,olf1,olf2};...
+        {21,  visStimN, LaserOff,olf1,olf2};...
+        {40,  rand3, LaserOff,olf1,olf2};...
+        {41,  visStimN, LaserOff,olf1,olf2};...
+        {60,  rand4, LaserOff,olf1,olf2};...
+        {61,  visStimN, LaserOff,olf1,olf2};...
+        {80,  rand5, LaserOff,olf1,olf2};...
+        {81,  visStimN, LaserOff,olf1,olf2};...
+        {100,  rand6, LaserOff,olf1,olf2};...
+        {101,  visStimN, LaserOff,olf1,olf2};...
+        {120, visStim0, LaserOff,olf1,olf2};...
+
+    ];
+
+    

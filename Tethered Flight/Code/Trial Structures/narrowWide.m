@@ -1,0 +1,46 @@
+
+% narrowWide.m
+%
+% This script causes fixation on vertical bar,
+% then presents a pulse of odor,
+% then switches to wide-field
+
+% Constants
+global ts;
+
+center = 0;
+
+% Format: {time, visStim}
+%          [Mode, K0, K1, K2]
+visStimN = [1, 0, -1, center];
+LaserOn  = '3c00';
+LaserOff = '0000';
+odorOn = '3c00'; % (front wedge)
+EVOn   = '3c00';
+%odorOn = 'c003'; % (right wedge)
+%EVOn   = 'c003';
+olfOff = '0000'; 
+
+singleStripe = 'ardSetStripes(6,96);';
+grating      = 'ardSetStripes(6,12);'; % Could be (0,96) for no input
+
+histogramBounds = [1*60-4,1*60,7*60-4,7*60 ; 1*60,3*60,7*60,9*60 ; 4*60-4,4*60,10*60-4,10*60 ; 4*60,6*60,10*60,12*60];
+
+trialStructureList = [...
+        {0,      visStimN, LaserOff, olfOff,  olfOff, ''};...     %nb. First line is initial settingss
+        {1,      visStimN, LaserOff, olfOff,  olfOff, singleStripe};...
+        {1*60-4, visStimN, LaserOff, '3c00',  olfOff, ''};...
+        {1*60,   visStimN, LaserOff, '3c00',  olfOff, grating};...
+        {3*60,   visStimN, LaserOff, olfOff,  olfOff, singleStripe};...
+        {4*60-4, visStimN, LaserOff, olfOff,  '3c00', ''};...
+        {4*60,   visStimN, LaserOff, olfOff,  '3c00', grating};...
+        {6*60,   visStimN, LaserOff, olfOff,  olfOff, singleStripe};...
+        {7*60-4, visStimN, LaserOff, '3c00',  olfOff, ''};...
+        {7*60,   visStimN, LaserOff, '3c00',  olfOff, grating};...
+        {9*60,   visStimN, LaserOff, olfOff,  olfOff, singleStripe};...
+        {10*60-4,visStimN, LaserOff, olfOff,  '3c00', ''};...
+        {10*60,  visStimN, LaserOff, olfOff,  '3c00', grating};...  
+        {12*60,  visStimN, LaserOff, olfOff,  olfOff, singleStripe};...
+    ];
+
+    

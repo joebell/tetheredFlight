@@ -1,0 +1,29 @@
+% trialStructure.m
+
+% Constants
+global ts;
+
+
+% Format: {time, visStim}
+%          [Mode, K0, K1, K2]
+visStim0 = [1, 0, 0, 0];
+visStimR = [1, 180, 0,0];
+visStimL = [1, -180, 0,0];
+laser = '0000';
+olf1 = '0000';
+olf2 = '0000';
+
+trialStructureList = [...
+        {0,   visStim0,laser,olf1,olf2};...     %nb. First line is initial settingss
+        {10, visStimR,laser,olf1,olf2};...
+        {12, visStim0,laser,olf1,olf2};...
+        {14, visStimL,laser,olf1,olf2};...
+        {16, visStim0,laser,olf1,olf2};...
+        {60, visStimR,laser,olf1,olf2};...
+        {62, visStim0,laser,olf1,olf2};...
+        {64, visStimL,laser,olf1,olf2};...
+        {66, visStim0,laser,olf1,olf2};...
+        
+    ];
+
+    

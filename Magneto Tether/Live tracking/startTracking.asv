@@ -1,0 +1,13 @@
+% startTracking.m
+%
+% An example script showing how to start the tracking.
+%
+% JSB 11/2010
+
+global vid;
+global analogOut;
+
+vid = setupTrackingCamera();
+cam(450);
+showAvgView();
+

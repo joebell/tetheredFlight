@@ -1,0 +1,15 @@
+function odor = drawOdor(on, arena)
+
+x = 1.8;
+y1 = -9;
+y2 = -31.8;
+
+if (on > 2.5)
+    % odor is on
+    odor1 = fill([x x -x -x],[y1 y2 y2 y1],[.5 .5 .9],'EdgeColor',[.3 .3 .5]);
+    odor2 = fill([x x -x -x],[y1 y2 y2 y1],[.5 .5 .9],'EdgeColor',[.3 .3 .5]);
+else
+    % odor is off
+    % odor = fill([x x -x -x],[y1 y2 y2 y1],[.6 .6 1],'EdgeColor',[.4 .4 .7],'FaceAlpha',0);
+    odor = fill([x x -x -x],[y1 y2 y2 y1],[.8 .8 .8],'EdgeColor',[.3 .3 .5]);
+end

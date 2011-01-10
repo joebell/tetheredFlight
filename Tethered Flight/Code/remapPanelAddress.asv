@@ -1,0 +1,5 @@
+function remapPanelAddress(from, to)
+
+if (isstr(from))
+    src = hex2dec(from);
+else 

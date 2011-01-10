@@ -1,0 +1,32 @@
+% initTrackingParams.m
+%
+% Sets up initial tracking parameters for tracking algorithms.
+% Also initializes variables.  Users shouldn't normally need to edit
+% this file, except the starting boundingSize.
+% 
+% JSB 11/2010
+function trackingParams = initTrackingParams()
+
+    glo
+    
+    trackingParams.previewFigure = figure();
+    trackingParams.boundingSize = 280;
+    trackingParams.boundingCenter = [320, 240];
+    trackingParams.rotationCenter = [trackingParams.boundingSize/2, ...
+         trackingParams.boundingSize/2];
+    trackingParams.centerLine = line([0 0],[1 1]);
+    trackingParams.runningAvg = zeros(trackingParams.boundingSize); 
+    trackingParams.displayMode = 0;
+    trackingParams.updateAvg = true;
+    trackingParams.lastLine = line([0 0],[1 1]);
+    trackingParams.ringBuffer.size = 30*15;
+    trackingParams.ringBuffer.idx = 1;
+    trackingParams.ringBuffer.flip = false;
+    trackingParams.xPos = 0; trackingParams.yPos = 0;    
+    trackingParams.laserArming = [0, 90; -180, -90];
+    tic;
+    
+    
+    
+    
+    
