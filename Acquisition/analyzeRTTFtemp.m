@@ -4,7 +4,7 @@ function out = analyzeRTTFtemp(filename, comment)
 
 freqThresh = 100;       % Discard WBA's if Freq is below this.
 colorList = ['b','m','k','r','g','y','c','b','m','k','r','g','y','c'];
-tOffset = -.129; % Timing offset
+tOffset = -.329; % Timing offset
 rateError = .36; % Correction for DAQ clock
 
 
@@ -185,7 +185,7 @@ ax2 = axes('Position',get(ax1,'Position'),...
            'YAxisLocation','right',...
            'Color','none',...
            'XColor','m','YColor','m');
-tempLine = line(data.Temp.time,data.Temp.temp,'Color','m','Parent',ax2);
+tempLine = line(data.Temp.time-1,data.Temp.temp,'Color','m','Parent',ax2);
 xlim(xlims);
 set(ax2,'XTick',[]);
 ylabel('Temp (C)');
