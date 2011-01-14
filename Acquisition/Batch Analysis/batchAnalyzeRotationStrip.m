@@ -1,10 +1,12 @@
 % batchAnalyzeRotationStrip.m
 
-comment = 'Levelled Arena';
-fileList = {'../Data/RTTF110107-134035.mat', ...
-    '../Data/RTTF110107-140904.mat', ...
-    '../Data/RTTF110107-141451.mat', ...
-    '../Data/RTTF110107-144128.mat', ...
+clear all;
+
+settings = tfSettings();
+
+comment = 'prog4HT   0-2   LP @ 125';
+fileList = {[settings.dataDir,'RTTF110113-135751.mat'], ...
+
 
     };
 
@@ -89,9 +91,9 @@ for page = 1:ceil(numFiles/plotsPerPage)
         set(gcf, 'PaperSize', [11 8.5])
         set(gcf, 'PaperPosition', [0 0 11 8.5]);
         if (page > 1)
-            filenameOut = ['../Data/Batch ',comment,' p',num2str(page),'.pdf'];  
+            filenameOut = [settings.dataDir,'Batch-',comment,' p',num2str(page),'.pdf'];  
         else
-            filenameOut = ['../Data/Batch ',comment,'.pdf'];  
+            filenameOut = [settings.dataDir,'Batch-',comment,'.pdf'];  
         end
         print(gcf, '-dpdf',filenameOut);
 end

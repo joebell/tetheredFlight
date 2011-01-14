@@ -10,7 +10,7 @@ center = 0;
 %          [Mode, K0, K1, K2]
 visStim0 = [0, 90,  0, center];
 visStimN = [0, 90,  0, center];
-LaserOn  = 'c3c3';
+LaserOn  = '3c3c';
 LaserOff = '0000';
 olf1 = '0000';
 olf2 = '0000';

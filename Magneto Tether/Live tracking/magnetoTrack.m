@@ -23,10 +23,10 @@ function magnetoTrack(obj, event)
 
     % Tracking parameters    
     imageTau = 20;          % Image averaging time-constant (secs)
-    trackThresh = 75;       % Pixel brightness threshold for detecting change
+    trackThresh = 45;       % Pixel brightness threshold for detecting change
     boxSize = 3;            % Size of bounding box to draw
     invert = true;          % True for white fly on black BG 
-    trackMode = 0;          % See below for descriptions
+    trackMode = 3;          % See below for descriptions
     
     
     bsize = trackingParams.boundingSize;
@@ -82,7 +82,7 @@ function magnetoTrack(obj, event)
     elseif trackMode == 2
         % Subtract camera data from the running average
         if invert
-            diffPix = frame - uint8(trackingParams.runningAvg);
+            diffPix = frame  - uint8(trackingParams.runningAvg);
         else
             diffPix = uint8(trackingParams.runningAvg) - frame;
         end

@@ -1,4 +1,4 @@
-function out = analyzeRotationStrip(filename, comment, myAxis)
+function out = analyzeRotationStrip(filename, comment, myAxis, varargin)
 
 %% Parameters
 
@@ -13,6 +13,13 @@ load(filename);
 nSamples = size(data.LAmp,1);
 data.time = ((1:nSamples) ./ (daqParams.SampleRate + rateError)) + tOffset;
 
+if nargin <= 3
+    stTime = data.time(1);
+    endTime = data.time(end);
+else
+    stTime = varargin{1};
+    endTime = varargin{2};
+end
 
 %% Remove data from times when the fly isn't flying...
 ind = find(data.Freq < freqThresh);
@@ -159,6 +166,7 @@ xlabel('Time (sec)');
 set(gca,'YTick',[-180 -90 0 90 180 270 360]);
 set(gca,'YTickLabel','180|270|0|90|180|270|360');
 title(comment);
+xlim([stTime endTime]);
 %xlim(xlims);
 
 %% Plot the WBAdiff histogram
