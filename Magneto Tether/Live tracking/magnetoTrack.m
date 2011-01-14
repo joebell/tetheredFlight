@@ -23,7 +23,7 @@ function magnetoTrack(obj, event)
 
     % Tracking parameters    
     imageTau = 20;          % Image averaging time-constant (secs)
-    trackThresh = 45;       % Pixel brightness threshold for detecting change
+    trackThresh = 55;       % Pixel brightness threshold for detecting change
     boxSize = 3;            % Size of bounding box to draw
     invert = true;          % True for white fly on black BG 
     trackMode = 3;          % See below for descriptions
