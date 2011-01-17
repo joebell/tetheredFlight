@@ -23,10 +23,10 @@ function magnetoTrack(obj, event)
 
     % Tracking parameters    
     imageTau = 20;          % Image averaging time-constant (secs)
-    trackThresh = 55;       % Pixel brightness threshold for detecting change
+    trackThresh = 40;       % Pixel brightness threshold for detecting change
     boxSize = 3;            % Size of bounding box to draw
     invert = true;          % True for white fly on black BG 
-    trackMode = 3;          % See below for descriptions
+    trackMode = 1;          % See below for descriptions
     
     
     bsize = trackingParams.boundingSize;
@@ -127,10 +127,13 @@ function magnetoTrack(obj, event)
         [Brow, Bcol] = find(diffPix((bsize/2):bsize,:) > trackThresh);
         [Lrow, Lcol] = find(diffPix(:,1:(bsize/2)) > trackThresh);
         [Rrow, Rcol] = find(diffPix(:,(bsize/2):bsize) > trackThresh);
-        TBidx = (std(Trow) + std(Tcol))/size(Tcol,1) + (std(Brow) + std(Bcol))/size(Bcol,1);
-        LRidx = (std(Lrow) + std(Lcol))/size(Lcol,1) + (std(Rrow) + std(Rcol))/size(Rcol,1);
+        %TBidx = (std(Trow) + std(Tcol))/size(Tcol,1) + (std(Brow) + std(Bcol))/size(Bcol,1);
+        %LRidx = (std(Lrow) + std(Lcol))/size(Lcol,1) + (std(Rrow) + std(Rcol))/size(Rcol,1);
+        TBidx = max([size(Tcol,1),size(Bcol,1)]);
+        LRidx = max([size(Lcol,1),size(Rcol,1)]);
+        % disp([num2str(TBidx),' ',num2str(LRidx)]);
         prevPosition = [trackingParams.xPos, trackingParams.yPos];
-        if TBidx < LRidx % Choose TB panels
+        if TBidx > LRidx % Choose TB panels
             topDist = norm([mean(Tcol),mean(Trow)]-prevPosition);
             bottomDist = norm([mean(Bcol),mean(Brow)+(bsize/2)]-prevPosition);
             if trackingParams.ringBuffer.flip
@@ -141,8 +144,10 @@ function magnetoTrack(obj, event)
             end
             if topDist < bottomDist % Choose top
                 xPos = mean(Tcol);  yPos = mean(Trow);
+                %disp('Top');
             else % Choose bottom
                 xPos = mean(Bcol);  yPos = mean(Brow)+(bsize/2);
+                %disp('Bottom');
             end
         else  % Choose LR panels
             leftDist = norm([mean(Lcol),mean(Lrow)]-prevPosition);
@@ -156,8 +161,10 @@ function magnetoTrack(obj, event)
             end
             if leftDist < rightDist % Choose left
                 xPos = mean(Lcol);     yPos = mean(Lrow);
+                %disp('Left');
             else % Choose right
                 xPos = mean(Rcol)+(bsize/2); yPos = mean(Rrow);
+                %disp('Right');
             end
         end
     elseif trackMode == 4
@@ -194,7 +201,7 @@ function magnetoTrack(obj, event)
     end % End trackMode
        
     % Copy the computed positions to the global space
-    if (isnan(xPos))
+    if (isnan(xPos) || isnan(yPos))
         xPos = trackingParams.xPos;
         yPos = trackingParams.yPos;
     else
