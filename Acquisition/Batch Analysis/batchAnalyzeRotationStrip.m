@@ -4,8 +4,11 @@ clear all;
 
 settings = tfSettings();
 
-comment = 'prog4HT   0-2   LP @ 125';
-fileList = {[settings.dataDir,'RTTF110113-135751.mat'], ...
+comment = 'progWide   0-2   LP @ 225e';
+fileList = {[settings.dataDir,'RTTF110119-181619.mat'], ...
+    [settings.dataDir,'RTTF110119-181937.mat'], ...
+    [settings.dataDir,'RTTF110119-183853.mat'], ...
+
 
 
     };
@@ -62,7 +65,7 @@ fileList = {[settings.dataDir,'RTTF110113-135751.mat'], ...
 %     '../Data/RTTF101109-161343.mat', ...    
 %     };
 
-plotsPerPage = 4;
+plotsPerPage = 3;
 numFiles = size(fileList,2);
 for file=1:numFiles    
     

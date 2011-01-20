@@ -4,8 +4,8 @@ clear all;
 
 settings = tfSettings();
 
-comment = 'prog4HT   0-2   LP @ 125';
-fileName = [settings.dataDir,'RTTF110113-135751.mat'];
+comment = 'progWide   0-2   LP @ 225e';
+fileName = [settings.dataDir,'RTTF110119-181937.mat'];
 
 
 fileList{1} = fileName;
