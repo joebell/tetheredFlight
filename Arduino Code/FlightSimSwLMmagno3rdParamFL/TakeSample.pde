@@ -111,20 +111,32 @@ void takeSample() {
     if (laserValveCoord > 15) {laserValveCoord -= 16; }   
     if (laserValveCoord < 0) {laserValveCoord += 16;}
     
+    if (params[LASERSWITCHMODE] == 0) {
+      laserSwitch = true;
+    }
     // Activate the laser  
     if ((1 << laserValveCoord) & params[SECTORSARMED]) {
       digitalWrite(LASERINDICPIN, HIGH); 
-      if (laserSamples < params[LASERFDUR]*10) {
+      if ((laserSamples < params[LASERFDUR]*10) && laserSwitch) {
         analogWrite(LASERDRIVEPIN, params[LASERPOWERF]);
         laserSamples += 10;
       } else {
+        laserSwitch = false;
         analogWrite(LASERDRIVEPIN, params[LASERPOWER]);
-        if (laserSamples > 0) { laserSamples -= params[LASERPLATDECAY]; }
+        if (laserSamples > 0) { 
+          laserSamples -= params[LASERPLATDECAY]; 
+        } else {
+          laserSwitch = true;
+        }
       }
     } else {
       digitalWrite(LASERINDICPIN, LOW);
       analogWrite(LASERDRIVEPIN, 0);
-      if (laserSamples > 0) { laserSamples -= params[LASERDECAY]; }
+      if (laserSamples > 0) { 
+          laserSamples -= params[LASERPLATDECAY]; 
+      } else {
+          laserSwitch = true;
+      }
     }
     
     // Activate the olfactometer channel 1 

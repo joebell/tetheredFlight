@@ -8,12 +8,14 @@ function ardSetLaserPower(varargin)
         rampDur = 800;
         decay = 3;
         plateauDecay = 0;
-    elseif nargin == 5
+        switchMode = 0;
+    elseif nargin == 6
         constPower = varargin{1};
         rampPower  = varargin{2};
         rampDur = varargin{3};
         decay = varargin{4};
         plateauDecay = varargin{5};
+        switchMode = varargin{6};
     end
     
     ardWriteParam(ardVar.LaserPower, constPower);
@@ -21,5 +23,7 @@ function ardSetLaserPower(varargin)
     ardWriteParam(ardVar.LaserFDur, rampDur);
     ardWriteParam(ardVar.LaserDecay, decay);
     ardWriteParam(ardVar.LaserPlateauDecay, plateauDecay);
+    ardWriteParam(ardVar.LaserSwitchMode, switchMode);
+    
        
     ardFlip();

@@ -30,6 +30,7 @@
 #define LASERFDUR 17
 #define LASERDECAY 18
 #define LASERPLATDECAY 19
+#define LASERSWITCHMODE 20
 
 
 

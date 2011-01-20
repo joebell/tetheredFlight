@@ -22,7 +22,8 @@ void setupParams() {
   params[LASERFDUR] = 800;
   params[LASERDECAY] = 3;
   params[LASERPLATDECAY] = 0;
-  params[SECTORSARMED] = 0;   
+  params[LASERSWITCHMODE] = 0;
+  params[SECTORSARMED] = 0;  
   
   params[OLF1ARMED] = 0;
   params[OLF2ARMED] = 0;

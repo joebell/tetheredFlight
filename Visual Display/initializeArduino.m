@@ -48,6 +48,7 @@ ardVar.LaserPowerF = 16;
 ardVar.LaserFDur = 17;
 ardVar.LaserDecay = 18;
 ardVar.LaserPlateauDecay = 19;
+ardVar.LaserSwitchMode = 20;
 
 
 if (isempty(instrfind('Status','open')))

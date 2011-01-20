@@ -22,6 +22,7 @@ long sigL;
 long avgDiff;
 long sigDiff;
 int laserSamples;
+boolean laserSwitch;
 
 
 long X;
