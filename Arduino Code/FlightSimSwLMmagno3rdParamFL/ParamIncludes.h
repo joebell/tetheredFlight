@@ -29,6 +29,7 @@
 #define LASERPOWERF 16
 #define LASERFDUR 17
 #define LASERDECAY 18
+#define LASERPLATDECAY 19
 
 
 

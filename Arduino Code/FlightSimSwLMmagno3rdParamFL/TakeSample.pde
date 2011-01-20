@@ -119,6 +119,7 @@ void takeSample() {
         laserSamples += 10;
       } else {
         analogWrite(LASERDRIVEPIN, params[LASERPOWER]);
+        if (laserSamples > 0) { laserSamples -= params[LASERPLATDECAY]; }
       }
     } else {
       digitalWrite(LASERINDICPIN, LOW);

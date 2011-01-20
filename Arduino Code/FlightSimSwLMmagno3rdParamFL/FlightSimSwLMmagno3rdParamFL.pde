@@ -6,7 +6,7 @@
 
 #define SAMPLERATE 1250      // Period to run at, in microseconds (limit is about 1250 @ 800 Hz)
 #define SAMPPERSEC  800
-#define NUMPARAMS    20      // Number of parameters that govern flight
+#define NUMPARAMS    21      // Number of parameters that govern flight
 #define BAUDRATE 115200      // Serial baudrate
 #define OVERSAMPLE   17      // Bits to oversample position nb. long is 31 bits + sign bit (17)
 

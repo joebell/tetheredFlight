@@ -47,6 +47,7 @@ ardVar.Tau = 15;
 ardVar.LaserPowerF = 16;
 ardVar.LaserFDur = 17;
 ardVar.LaserDecay = 18;
+ardVar.LaserPlateauDecay = 19;
 
 
 if (isempty(instrfind('Status','open')))
