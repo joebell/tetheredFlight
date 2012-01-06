@@ -176,7 +176,7 @@ void receiveSerial() {
       } else if (r2 == 7) {
           // Laser sight
           digitalWrite(LASERINDICPIN, HIGH);
-          analogWrite(LASERDRIVEPIN, 13);
+          analogWrite(LASERDRIVEPIN, 50);
       } else if (r2 == 8) {
           // Laser off
           digitalWrite(LASERINDICPIN, LOW);

@@ -11,7 +11,7 @@ function vid2 = setupCamera2()
     global vid2;
         
     % Sets up the video object
-    vid2 = videoinput('dcam',1,'Y8_640x480');
+    vid2 = videoinput('dcam',2,'Y8_640x480');
     set(vid2,'FramesPerTrigger',inf);
     set(vid2,'FrameGrabInterval', 1);
     triggerconfig(vid2, 'Manual');
@@ -46,12 +46,26 @@ function vid2 = setupCamera2()
     % Set up the update preview window function.
     % This displays the preview and does the tracking!
     setappdata(hImage,'UpdatePreviewWindowFcn',@vidPreview2);
+    set(hImage,'ButtonDownFcn',{@fig2click});
 
     % Make handle to text label available to update function.
     setappdata(hImage,'HandleToTimestampLabel',hTextLabel);
 
     % Start the video preview
     preview(vid2, hImage);
+    
+    load('fig2Markers.mat');
+    global fig2Lines;
+    fig2Lines = [];
+    initCond = point(1,1:2);   
+    if size(fig2Lines(:),1) > 0
+        delete(fig2Lines(1));
+        delete(fig2Lines(2));
+    end
+    fig2Lines(1) = line([0 640],[initCond(2) initCond(2)],'Color',[1 0 0]);
+    fig2Lines(2) = line([initCond(1) initCond(1)],[0 480],'Color',[1 0 0]);
+    
+
 
 
 

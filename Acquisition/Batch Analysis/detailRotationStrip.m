@@ -4,9 +4,10 @@ clear all;
 
 settings = tfSettings();
 
-comment = 'progWide   0-2   LP @ 225e';
-fileName = [settings.dataDir,'RTTF110119-181937.mat'];
-
+comment = 'LP = 100';
+%fileName = [settings.dataDir,'RTTF110125-174333.mat'];
+%fileName = [settings.dataDir,'RTTF110303-101717.mat'];
+fileName = [settings.dataDir,'RTTF110304-164337.mat'];
 
 fileList{1} = fileName;
 fileList{2} = fileName;

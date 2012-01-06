@@ -8,10 +8,12 @@ function changeState(obj, event, newState)
  
  time = newState{1};
  visParams = newState{2};
+ 
+ ardFlip();
 
  if (size(newState,2) > 6) 
      cmd = newState{7};
-     if (size(cmd,2) == 0)
+     if (size(cmd,2) ~= 0)
         eval(cmd);
      end
  end
@@ -21,7 +23,7 @@ function changeState(obj, event, newState)
  % putvalue(digitalIO, output);
  
  % Values are automatically transmitted over serial by preUpdateArduino
- ardFlip();
+
 
  
  

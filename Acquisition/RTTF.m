@@ -95,7 +95,7 @@ global daqParams;
     save([settings.dataDir,filename,'.mat'],'data', 'daqParams', 'trialStructureName','trialStructureList','histogramBounds','TimeRun');
     disp('... Finished trial.');
     disp(['Wrote: ',filename,'.mat']);
-    analyzeRTTF([settings.dataDir,filename,'.mat'],comment);
+    %analyzeRTTF([settings.dataDir,filename,'.mat'],comment);
 
     disp('----------------------------------------------------------');
     disp(['WBA Diff Mean:    ', num2str(mean(data.LAmp - data.RAmp))]);

@@ -43,13 +43,11 @@ function calibrateXOutput()
     
     RTTF('calibrateAngles','',[]);
     wait(analogIn,35);
-    close(4);
-    close(5);
+
     RTTF('smoothSweepCalibrate','',[]);
     wait(analogIn,11);
     wait(analogIn,26);
-    close(4);
-    close(5);
+
         
         
         

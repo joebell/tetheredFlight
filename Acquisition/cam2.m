@@ -17,8 +17,8 @@ function cam2(arg)
         set(vid2.Source,'AutoExposureMode','manual', ...
             'BrightnessMode','manual', ...
             'AutoExposure',arg, ...             % 0-511
-            'Brightness', 200, ...              % 128-383
-            'Gain', 100, ...                    % 0-255
+            'Brightness', 250, ...              % 128-383
+            'Gain', 200, ...                    % 0-255
             'Sharpness', 50, ...                % 0-255
             'Shutter', 7, ...                   % 0-7
             'Gamma',1, ...                      % 0 or 1  

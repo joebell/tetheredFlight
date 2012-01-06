@@ -1,12 +1,12 @@
 function cam(arg)
 
-    global uprightVid;
+    global vid;
 
     if (isstr(arg))
       %  'AutoExposure',500, ...             % 0-511
       %  'Brightness', 250, ...              % 128-383
       %  'Gain', 110, ...                    % 0-255
-        set(uprightVid.Source,'AutoExposureMode','auto', ...
+        set(vid.Source,'AutoExposureMode','auto', ...
             'BrightnessMode','auto', ...
             'Sharpness', 50, ...                % 0-255
             'Shutter', 7, ...                   % 0-7
@@ -14,11 +14,11 @@ function cam(arg)
             'FrameRate', '30');                 % 30,15,7.5,3.75 - Use a string!
     else
               
-        set(uprightVid.Source,'AutoExposureMode','manual', ...
+        set(vid.Source,'AutoExposureMode','manual', ...
             'BrightnessMode','manual', ...
             'AutoExposure',arg, ...             % 0-511
-            'Brightness', 175, ...              % 128-383
-            'Gain', 180, ...                    % 0-255
+            'Brightness', 250, ...              % 128-383
+            'Gain', 150, ...                    % 0-255
             'Sharpness', 50, ...                % 0-255
             'Shutter', 7, ...                   % 0-7
             'Gamma',1, ...                      % 0 or 1  

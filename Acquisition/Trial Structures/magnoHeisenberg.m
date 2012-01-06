@@ -9,7 +9,7 @@ center = 0;
 % Format: {time, visStim} 
 %          [Mode, K0, K1, K2]
 visStim0 = [0, 90,  0, center];
-visStimN = [0, 90,  0, center];
+visStimN = [0, 180,  0, center];
 LaserOn  = '3c3c';
 LaserOff = '0000';
 olf1 = '0000';

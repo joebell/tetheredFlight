@@ -8,11 +8,11 @@ center = 0;
 
 % Format: {time, visStim}
 %          [Mode, K0, K1, K2]
-visStimN = [1, 0, -1, center];
+visStimN = [1, 0, -6, center];
 LaserOn  = '3c00';
 LaserOff = '0000';
-odorOn = '003c'; % (front wedge)
-EVOn   = '003c';
+odorOn = '00ff'; % (front half)
+EVOn   = '00ff';
 %odorOn = 'c003'; % (right wedge)
 %EVOn   = 'c003';
 olfOff = '0000'; 
