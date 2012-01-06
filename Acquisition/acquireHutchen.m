@@ -18,7 +18,7 @@ function acquireHutchen(length)
      hutchens.R = acquired(:,2);
      hutchens.time = (1:size(acquired,1)) ./ sampleRate;
 
-     figure();
+     hutchFig = figure();
      subplot(3,1,1);
      plot(hutchens.time,hutchens.L,'b');
      hold on;
@@ -46,10 +46,10 @@ function acquireHutchen(length)
     filename = ['HUTCHEN',time,'.pdf'];
     datafilename = ['HUTCHEN',time,'.mat'];
     saveExperimentData('Hutchens',datafilename,'hutchens');
-    subplot(3,1,1);
     
-    settings = dataCzarSettings();
-    
+    figure(hutchFig);
+    subplot(3,1,1);   
+    settings = dataCzarSettings();   
     title(filename);
      
         set(gcf, 'Color', 'white');
