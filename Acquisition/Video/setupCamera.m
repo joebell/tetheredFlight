@@ -55,7 +55,7 @@ function vid = setupCamera()
     % Start the video preview
     preview(vid, hImage);
     
-    load('fig1Markers.mat');
+    load('./Video/fig1Markers.mat');
     global fig1Lines;
     fig1Lines = [];
     initCond = point(1,1:2);   

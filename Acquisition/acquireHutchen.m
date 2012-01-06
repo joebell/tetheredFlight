@@ -46,6 +46,8 @@ settings = tfSettings();
     TimeRun = now;
     time = datestr(TimeRun, 'yymmdd-HHMMSS');
     filename = ['HUTCHEN',time,'.pdf'];
+    datafilename = ['HUTCHEN',time,'.mat'];
+    save([settings.dataDir,datafilename],'hutchens');
     subplot(3,1,1);
     title(filename);
      

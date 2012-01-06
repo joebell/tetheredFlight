@@ -5,7 +5,7 @@ function fig2click(src,eventdata)
     parentAxis = get(src,'Parent');
     point = get(parentAxis,'CurrentPoint');
     
-    save('fig2Markers.mat','point');
+    save('./Video/fig2Markers.mat','point');
     
     initCond = point(1,1:2);
     
