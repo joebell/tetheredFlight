@@ -91,8 +91,9 @@ global daqParams;
     data.X     = acquiredData(:,6);
     data.Odor  = acquiredData(:,7);
 
-    settings = tfSettings();
-    saveData([settings.dataDir,filename,'.mat'],'data', 'daqParams', 'trialStructureName','trialStructureList','histogramBounds','TimeRun');
+    %settings = tfSettings();
+    %saveData([settings.dataDir,filename,'.mat'],'data', 'daqParams', 'trialStructureName','trialStructureList','histogramBounds','TimeRun');
+    saveData([filename,'.mat']);
     disp('... Finished trial.');
     disp(['Wrote: ',filename,'.mat']);
     %analyzeRTTF([settings.dataDir,filename,'.mat'],comment);
