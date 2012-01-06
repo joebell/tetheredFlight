@@ -93,7 +93,7 @@ global daqParams;
 
     %settings = tfSettings();
     %saveData([settings.dataDir,filename,'.mat'],'data', 'daqParams', 'trialStructureName','trialStructureList','histogramBounds','TimeRun');
-    saveData([filename,'.mat']);
+    saveData([filename,'.mat'],'data', 'daqParams', 'trialStructureName','trialStructureList','histogramBounds','TimeRun');
     disp('... Finished trial.');
     disp(['Wrote: ',filename,'.mat']);
     %analyzeRTTF([settings.dataDir,filename,'.mat'],comment);
