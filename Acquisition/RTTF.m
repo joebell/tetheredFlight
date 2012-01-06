@@ -1,4 +1,4 @@
-% Realtime tethered flight controller
+%% Realtime tethered flight experiment controller
 
 function RTTF(trialStructureName, comment, recVideo) 
 
