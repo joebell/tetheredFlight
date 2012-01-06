@@ -41,10 +41,10 @@ function calibrateXOutput()
     save('./xOutputCalibration.mat','xOutputCal');
     disp(['Wrote calibration: slope = ',num2str(cfun.p1),' deg/V,  intercept = ',num2str(cfun.p2),' V']);
     
-    RTTF('calibrateAngles','',[]);
+    RTTF('calibrateAngles','CalSteps',[]);
     wait(analogIn,35);
 
-    RTTF('smoothSweepCalibrate','',[]);
+    RTTF('smoothSweepCalibrate','CalSweep',[]);
     wait(analogIn,11);
     wait(analogIn,26);
 
