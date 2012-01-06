@@ -331,8 +331,14 @@ figure(timeSeriesFigure);
         set(gcf, 'PaperUnits', 'inches');
         set(gcf, 'PaperSize', [11 8.5])
         set(gcf, 'PaperPosition', [0 0 11 8.5]);
-        filenameOut = strrep(filename,'.mat','a.pdf');
-        print(gcf, '-dpdf',filenameOut);
+        if isnumeric(filename)
+            filenameOut = strrep(num2str(filename),'.mat','a.pdf');
+        else
+            filenameOut = strrep(filename,'.mat','a.pdf');
+        end
+        
+        settings = dataCzarSettings();
+        print(gcf, '-dpdf',[settings.dataDir,filenameOut]);
         
 % figure(histogramFigure);
 % 
@@ -367,6 +373,7 @@ function plotLaserTrace(ax, data)
 function plotOdorTrace(ax, data)
 
     set(gcf,'CurrentAxes',ax);
+    codeStampFigure(gcf);
     hold on;
     ylims = ylim();
     top = ylims(2);
