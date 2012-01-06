@@ -1,7 +1,5 @@
 function acquireHutchen(length)
 
-settings = tfSettings();
-
      sampleRate = 25000;
 
      analogIn = analoginput('mcc','1');  
@@ -47,8 +45,11 @@ settings = tfSettings();
     time = datestr(TimeRun, 'yymmdd-HHMMSS');
     filename = ['HUTCHEN',time,'.pdf'];
     datafilename = ['HUTCHEN',time,'.mat'];
-    save([settings.dataDir,datafilename],'hutchens');
+    saveExperimentData('Hutchens',datafilename,'hutchens');
     subplot(3,1,1);
+    
+    settings = dataCzarSettings();
+    
     title(filename);
      
         set(gcf, 'Color', 'white');
