@@ -20,7 +20,7 @@ function [n, rangeX] = accumulateHistogram(fileList,epochRanges, preTime, postTi
             end
             sampleBounds = convertToSamples(timeList);
                         
-            for pair=1:2:size(sampleBounds,2)
+            for pair=1:2:size(sampleBounds,1)
                 sampleList = sampleBounds(pair):sampleBounds(pair+1);
                 [smoothX, wrappedX] = smoothUnwrap(data.X(sampleList), daqParams.xOutputCal, 0);
                 binnedX = histReady(wrappedX);
