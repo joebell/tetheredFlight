@@ -4,21 +4,7 @@ function testFilteredData(fileList)
         
         loadData(fileList(fileN));
         
-        % Generate a new file name to hold filtered data
-        dcSettings = dataCzarSettings();
-        load([dcSettings.dataCzarDir,'.dmIndex.mat']);
-        file = dmIndex.files(fileList(fileN));
-        sourceName = file.name;        
-        newName = strrep(sourceName,'.mat','filt.mat');
-        
-        newNum = returnFileList(newName);
-        if size(newNum,1) > 0
-            loadData(newNum);
-        else
-            disp('Running filters.');
-            runFilters(fileList(fileN));
-            loadData(newName);
-        end
+        filteredData = loadFilteredData(fileList(fileN));
         
         [smoothX, wrappedX] = smoothUnwrap(data.X, daqParams.xOutputCal, 0);
         
