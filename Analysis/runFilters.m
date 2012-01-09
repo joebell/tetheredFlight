@@ -10,7 +10,7 @@ function runFilters(fileList)
         myGaussian = 1/(c*sqrt(2*pi))*exp(- (gaussRange .* gaussRange)/(2*c*c));
 
 % Design filter for WBA data
-hb=fdesign.lowpass('Fp,Fst,Ap,Ast',4,20,1,60,1000);
+hb=fdesign.lowpass('Fp,Fst,Ap,Ast',10,50,1,60,1000);
 db=design(hb,'equiripple');
 
  for fileN = 1:size(fileList,2)
