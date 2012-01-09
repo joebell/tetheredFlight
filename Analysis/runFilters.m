@@ -23,8 +23,15 @@ db=design(hb,'equiripple');
         lTrace = data.LAmp;
         rTrace = data.RAmp;
         % Filter X data    
-        filtX = filtfilt(da.Numerator,1,smoothX);
-        filtX = filtX - mean(filtX - smoothX); % Subtract any DC residual
+%         filtX = filtfilt(da.Numerator,1,smoothX);
+%         filtX = filtX - mean(filtX - smoothX); % Subtract any DC residual
+
+        sigma = 10;
+        c = 10;
+        gaussRange = -7*sigma:7*sigma;
+        myGaussian = 1/(c*sqrt(2*pi))*exp(- (gaussRange .* gaussRange)/(2*c*c));
+
+        filtX = conv(smoothX, myGaussian,'same');
         dX = diff(filtX).*1000;    dX(end+1) = dX(end);
         % Filter WBA data
         filtDiff = filtfilt(db.Numerator,1,lTrace - rTrace);
