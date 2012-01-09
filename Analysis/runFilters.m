@@ -12,7 +12,7 @@ function runFilters(fileList)
 % Design filter for WBA data
 % hb=fdesign.lowpass('Fp,Fst,Ap,Ast',10,50,1,60,1000);
 % db=design(hb,'equiripple');
-        sigma = 100; % 100 ms
+        sigma = 25; % 25 ms
         c = sigma;
         gaussRange = -5*sigma:5*sigma;
         wbaGaussian = 1/(c*sqrt(2*pi))*exp(- (gaussRange .* gaussRange)/(2*c*c));

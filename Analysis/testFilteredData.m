@@ -29,6 +29,6 @@ function testFilteredData(fileList)
         plot(timeBase,filteredData.filtWBAdiff,'r');
         
         figure();
-        hist(filteredData.filtdWBAdiff,100);
+        hist(filteredData.filtdWBAdiff,200);
  end
  
