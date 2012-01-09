@@ -26,9 +26,9 @@ db=design(hb,'equiripple');
 %         filtX = filtfilt(da.Numerator,1,smoothX);
 %         filtX = filtX - mean(filtX - smoothX); % Subtract any DC residual
 
-        sigma = 50;
-        c = 50;
-        gaussRange = -7*sigma:7*sigma;
+        sigma = 80;
+        c = 80;
+        gaussRange = -5*sigma:5*sigma;
         myGaussian = 1/(c*sqrt(2*pi))*exp(- (gaussRange .* gaussRange)/(2*c*c));
 
         filtX = conv(smoothX, myGaussian,'same');
