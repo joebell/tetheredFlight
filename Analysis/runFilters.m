@@ -3,13 +3,14 @@ function runFilters(fileList)
 % % Design filter for making dX/dt data
 % ha=fdesign.lowpass('Fp,Fst,Ap,Ast',1,8,1,60,1000);
 % da=design(ha,'equiripple');
-        sigma = 100;
+% Switched to gaussian convolution filter
+        sigma = 100; % 100 ms
         c = sigma;
         gaussRange = -5*sigma:5*sigma;
         myGaussian = 1/(c*sqrt(2*pi))*exp(- (gaussRange .* gaussRange)/(2*c*c));
 
 % Design filter for WBA data
-hb=fdesign.lowpass('Fp,Fst,Ap,Ast',2,10,1,60,1000);
+hb=fdesign.lowpass('Fp,Fst,Ap,Ast',4,20,1,60,1000);
 db=design(hb,'equiripple');
 
  for fileN = 1:size(fileList,2)
@@ -28,7 +29,7 @@ db=design(hb,'equiripple');
         lTrace = data.LAmp;
         rTrace = data.RAmp;
 
-        % Filter X data    
+% Filter X data    
 %         filtX = filtfilt(da.Numerator,1,smoothX);
 %         filtX = filtX - mean(filtX - smoothX); % Subtract any DC residual
         filtX = conv(smoothX, myGaussian,'same');

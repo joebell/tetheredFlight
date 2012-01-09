@@ -15,8 +15,20 @@ function testFilteredData(fileList)
         
         [smoothX, wrappedX] = smoothUnwrap(data.X, daqParams.xOutputCal, 0);
         
+        timeBase = getExpTime(size(wrappedX,2));
+        
         figure();
-        plot(wrappedX,'b'); hold on;
-        plot(mod(filteredData.filtX,360),'r');
+        plot(timeBase,wrappedX,'b'); hold on;
+        plot(timeBase,mod(filteredData.filtX,360),'r');
+        
+        figure();
+        hist(filteredData.dX,1000);
+        
+        figure();
+        plot(timeBase,data.LAmp - data.RAmp,'b'); hold on;
+        plot(timeBase,filteredData.filtWBAdiff,'r');
+        
+        figure();
+        hist(filteredData.filtdWBAdiff,100);
  end
  
