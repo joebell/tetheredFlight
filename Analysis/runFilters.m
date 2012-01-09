@@ -12,7 +12,7 @@ function runFilters(fileList)
 % Design filter for WBA data
 % hb=fdesign.lowpass('Fp,Fst,Ap,Ast',10,50,1,60,1000);
 % db=design(hb,'equiripple');
-        sigma = 25; % 25 ms
+        sigma = 50; % ms
         c = sigma;
         gaussRange = -5*sigma:5*sigma;
         wbaGaussian = 1/(c*sqrt(2*pi))*exp(- (gaussRange .* gaussRange)/(2*c*c));
@@ -44,7 +44,7 @@ function runFilters(fileList)
 % Filter WBA data
 %         filtDiff = filtfilt(db.Numerator,1,lTrace - rTrace);
 %         filtDiff = filtDiff - mean(filtDiff - (lTrace - rTrace)); % Subtract DC
-        filtDiff = conv(lTrace-rTrace, xGaussian,'same');        
+        filtDiff = conv(lTrace-rTrace, wbaGaussian,'same');        
         dWBAdiff = diff(filtDiff) .* 1000; dWBAdiff(end+1) = dWBAdiff(end);
         
         filteredData.filtX = filtX;
