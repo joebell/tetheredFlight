@@ -14,7 +14,7 @@ function [traces, timeTrace] = accumulateXTraces(fileList,epochRanges, preTime, 
             epoch = epochRanges(epochN);
             
             timeList = nonzeros(histogramBounds(epoch,:));
-            for pair=1:2:size(timeList,2)
+            for pair=1:2:size(timeList,1)
                 timeList(pair) = timeList(pair) + preTime;
                 timeList(pair+1) = timeList(pair+1) + postTime;
             end
