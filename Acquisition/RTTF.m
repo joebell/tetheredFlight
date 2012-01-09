@@ -1,6 +1,6 @@
-% Realtime tethered flight controller
+%% Realtime tethered flight experiment controller
 
-function RTTF(trialStructureName, comment, recVideo) 
+function RTTF(trialStructureName, experiment, recVideo) 
 
 global analogIn;
 global digitalIO;
@@ -54,7 +54,7 @@ end
 waitTimer = timerArray(numEvents);
 finishUpTimer = timer('ExecutionMode','singleShot',...
         'StartDelay',wholeTime,...
-        'TimerFcn', {@finishUpRTTF, wholeTime, waitTimer, trialStructureName, trialStructureList,histogramBounds,TimeRun, filename, comment});
+        'TimerFcn', {@finishUpRTTF, wholeTime, waitTimer, trialStructureName, trialStructureList,histogramBounds,TimeRun, filename, experiment});
 
 start(finishUpTimer);
     
@@ -68,7 +68,7 @@ end
 %%
 % This function catches the end of an RTTF to allow command line access
 % during data acquisition
-function finishUpRTTF(obj, event, wholeTime, waitTimer, trialStructureName, trialStructureList,histogramBounds,TimeRun, filename, comment)
+function finishUpRTTF(obj, event, wholeTime, waitTimer, trialStructureName, trialStructureList,histogramBounds,TimeRun, filename, experiment)
 
 global analogIn;
 global digitalIO;
@@ -91,11 +91,11 @@ global daqParams;
     data.X     = acquiredData(:,6);
     data.Odor  = acquiredData(:,7);
 
-    settings = tfSettings();
-    save([settings.dataDir,filename,'.mat'],'data', 'daqParams', 'trialStructureName','trialStructureList','histogramBounds','TimeRun');
+    %settings = tfSettings();
+    %saveData([settings.dataDir,filename,'.mat'],'data', 'daqParams', 'trialStructureName','trialStructureList','histogramBounds','TimeRun');
+    saveExperimentData(experiment,[filename,'.mat'],'data', 'daqParams', 'trialStructureName','trialStructureList','histogramBounds','TimeRun');
     disp('... Finished trial.');
     disp(['Wrote: ',filename,'.mat']);
-    %analyzeRTTF([settings.dataDir,filename,'.mat'],comment);
 
     disp('----------------------------------------------------------');
     disp(['WBA Diff Mean:    ', num2str(mean(data.LAmp - data.RAmp))]);
