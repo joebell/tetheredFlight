@@ -22,8 +22,8 @@ function testFilteredData(fileList)
         plot(timeBase,mod(filteredData.filtX,360),'r');
         
         figure();
-        hist(filteredData.dX,-100:100);
-        xlim([-100 100]);
+        hist(filteredData.dX,-900:30:900);
+        xlim([-900 900]);
         
         figure();
         plot(timeBase,data.LAmp - data.RAmp,'b'); hold on;
