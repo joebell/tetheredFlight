@@ -36,5 +36,5 @@ db=design(hb,'equiripple');
         filteredData.filtWBAdiff = filtDiff;
         filteredData.filtdWBAdiff = dWBAdiff;
         
-        saveData(newName, 'filteredData');
+        saveExperimentData(newName,newName, 'filteredData');
  end
