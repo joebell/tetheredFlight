@@ -5,11 +5,13 @@
 % Specify X bins with rangeX
 function [n, rangeX, rangedX] = accumulatePhaseHistogram(fileList,epochRanges, preTime, postTime, rangeX, rangedX)
 
-    n = zeros(1,size(rangeX,2));
+    n = zeros(size(rangeX,2),size(rangedX,2));
 
     for fileN = 1:size(fileList,2)
         
         loadData(fileList(fileN));
+        filteredData = loadFilteredData(fileList(fileN));
+        
         for epochN = 1:size(epochRanges,2)
             epoch = epochRanges(epochN);
             
@@ -24,7 +26,8 @@ function [n, rangeX, rangedX] = accumulatePhaseHistogram(fileList,epochRanges, p
                 sampleList = sampleBounds(pair):sampleBounds(pair+1);
                 [smoothX, wrappedX] = smoothUnwrap(data.X(sampleList), daqParams.xOutputCal, 0);
                 binnedX = histReady(wrappedX);
-                n = n + hist(binnedX,rangeX);
+                dX = filteredData.dX(sampleList);
+                n = n + hist3([binnedX,dX],{rangeX,rangedX});
             end
             
         end
