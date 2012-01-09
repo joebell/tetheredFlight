@@ -16,10 +16,17 @@ function expTime = getExpTime(varargin)
        
        nSamples = size(Sync,1);
        disp('Generating new timing sync from file.');
-   else
+   elseif nargin == 1
        nSamples = varargin{1};       
        load('timingSync.mat');     
        expTime = (1:nSamples)./(rawRate + rateError) + tOffset;
+       return;
+   elseif nargin == 2
+       startTime = varargin{1};
+       endTime = varargin{2};
+       load('timingSync.mat');  
+       expTime = startTime:1/(rawRate + rateError):endTime;
+       expTime = expTime';
        return;
    end
    
