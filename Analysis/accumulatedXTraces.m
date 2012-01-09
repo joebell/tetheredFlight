@@ -28,6 +28,7 @@ function [traces, timeTrace] = accumulatedXTraces(fileList,epochRanges, preTime,
             
         end
         
-        timeTrace = getExpTime(size(traces,2)) + preTime;
+        timeTrace = getExpTime(size(traces,2));
+        timeTrace = timeTrace - timeTrace(1) + preTime;
     end
     

@@ -1,7 +1,7 @@
 function [smoothX, wrappedX] = smoothUnwrap(inputX, xOutputCal, patternOffset)
 
     % Scales and unwraps X
-     X = xOutputCal.slope*inputX + xOutputCal.intercept + patternOffset;     % Converts voltage to degrees
+    X = xOutputCal.slope*inputX + xOutputCal.intercept + patternOffset;     % Converts voltage to degrees
     X = unwrap(X*2*pi/360);                         % Degrees to radians
     X = X*360/(2*pi);                               % Back to degrees
     
@@ -37,3 +37,4 @@ function [smoothX, wrappedX] = smoothUnwrap(inputX, xOutputCal, patternOffset)
     wrappedX(jumps(proxUpGaps) - 1) = 360;
     distalDownGaps = find(wrappedX(jumps + 1) > 180);
     wrappedX(jumps(distalDownGaps) + 1) = 360;
+    
