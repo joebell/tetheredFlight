@@ -23,7 +23,7 @@ function [traces, timeTrace] = accumulatedXTraces(fileList,epochRanges, preTime,
             
             for pair=1:2:size(sampleBounds,1)
                 sampleList = sampleBounds(pair):sampleBounds(pair+1);               
-                traces = padcat(1,traces,filteredData.dX(sampleList));
+                traces = padcat(1,traces,filteredData.dX(sampleList)');
             end
             
         end
