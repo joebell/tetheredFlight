@@ -10,3 +10,13 @@ function testFilteredData(fileList)
         file = dmIndex.files(fileList(fileN));
         sourceName = file.name;        
         newName = strrep(sourceName,'.mat','filt.mat');
+        
+        loadData(newName);
+        
+        [smoothX, wrappedX] = smoothUnwrap(data.X, daqParams.xOutputCal, 0);
+        
+        figure();
+        plot(wrappedX,'b'); hold on;
+        plot(mod(filteredData.filtX,360),'r');
+ end
+ 
