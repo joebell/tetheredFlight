@@ -11,7 +11,14 @@ function testFilteredData(fileList)
         sourceName = file.name;        
         newName = strrep(sourceName,'.mat','filt.mat');
         
-        loadData(newName);
+        newNum = returnFileList(newName);
+        if size(newNum,1) > 0
+            loadData(newNum);
+        else
+            disp('Running filters.');
+            runFilters(fileList(fileN));
+            loadData(newName);
+        end
         
         [smoothX, wrappedX] = smoothUnwrap(data.X, daqParams.xOutputCal, 0);
         
