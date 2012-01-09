@@ -23,8 +23,8 @@ db=design(hb,'equiripple');
         lTrace = data.LAmp;
         rTrace = data.RAmp;
         % Filter X data    
-        filtX = filtfilt(da.Numerator,1,wrappedX);
-        filtX = filtX - mean(filtX - wrappedX); % Subtract any DC residual
+        filtX = filtfilt(da.Numerator,1,smoothX);
+        filtX = filtX - mean(filtX - smoothX); % Subtract any DC residual
         dX = diff(filtX).*1000;    dX(end+1) = dX(end);
         % Filter WBA data
         filtDiff = filtfilt(db.Numerator,1,lTrace - rTrace);
