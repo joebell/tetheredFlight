@@ -25,7 +25,8 @@ function [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, range
                 sampleList = sampleBounds(pair):sampleBounds(pair+1);
                 [smoothX, wrappedX] = smoothUnwrap(data.X(sampleList), daqParams.xOutputCal, 0);
                 binnedX = histReady(wrappedX);
-                timeTrace = getExpTime(rangeT(1),rangeT(end));
+                timeTrace = getExpTime(size(binnedX,1));
+                timeTrace = timeTrace' - timeTrace(1) + rangeT(1);
                 n = n + hist3([binnedX,timeTrace],{rangeX,rangeT});
             end
             
