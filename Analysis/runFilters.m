@@ -4,7 +4,7 @@ function runFilters(fileList)
 % ha=fdesign.lowpass('Fp,Fst,Ap,Ast',1,8,1,60,1000);
 % da=design(ha,'equiripple');
 % Switched to gaussian convolution filter
-        sigma = 25; % ms
+        sigma = 100; % ms
         c = sigma;
         gaussRange = -5*sigma:5*sigma;
         xGaussian = 1/(c*sqrt(2*pi))*exp(- (gaussRange .* gaussRange)/(2*c*c));
