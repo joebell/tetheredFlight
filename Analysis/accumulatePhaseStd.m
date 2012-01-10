@@ -3,7 +3,7 @@
 % Epoch start times can be adjusted +preTime, and end times +postTime
 %
 % Specify X bins with rangeX
-function [means, n, rangeX, rangedX] = accumulatePhaseMeans(fileList,epochRanges, preTime, postTime, rangeX, rangedX)
+function [stds, rangeX, rangedX] = accumulatePhaseStd(fileList,epochRanges, preTime, postTime, means, rangeX, rangedX)
 
     n = zeros(size(rangeX,2),size(rangedX,2));
     sums = zeros(size(rangeX,2),size(rangedX,2));
@@ -32,7 +32,8 @@ function [means, n, rangeX, rangedX] = accumulatePhaseMeans(fileList,epochRanges
                 xNums = dsearchn(rangeX',binnedX);
                 dxNums = dsearchn(rangedX',dX);
                 for i=1:size(xNums,1)
-                    sums(xNums(i),dxNums(i)) = sums(xNums(i),dxNums(i)) + dWBA(i);
+                    squareDiff = (dWBA(i) - means(xNums(i),dxNums(i)))^2;
+                    sums(xNums(i),dxNums(i)) = sums(xNums(i),dxNums(i)) + squareDiff;
                     n(xNums(i),dxNums(i)) = n(xNums(i),dxNums(i)) + 1;                   
                 end
             end
@@ -40,8 +41,10 @@ function [means, n, rangeX, rangedX] = accumulatePhaseMeans(fileList,epochRanges
         end
     end
     
-    means = sums ./ n;
-    % Set undefined means to 0
-    ind = find(isnan(means));
-    means(ind) = 0;
+    vars = sums ./ n;
+    % Set undefined variances to 0
+    ind = find(isnan(vars));
+    vars(ind) = 0;
+    % Report the standard deviations
+    stds = sqrt(vars);
     
