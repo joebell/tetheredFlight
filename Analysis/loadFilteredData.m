@@ -9,7 +9,7 @@ function filteredData = loadFilteredData(fileN)
 
         % Try to load the filtered data, but generate it if it's not there
         newNum = returnFileList(newName);
-        if size(newNum,1) > 0
+        if (size(newNum,1) > 0) 
             loadData(newNum);
         else
             disp('Running filters.');

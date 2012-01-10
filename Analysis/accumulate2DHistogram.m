@@ -4,8 +4,9 @@
 % Epoch start times can be adjusted +preTime, and end times +postTime
 %
 % Specify X bins with rangeX
-function [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, rangeX, rangeT)
-  
+function [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, preTime, postTime, timeStep, rangeX)
+       
+    rangeT = preTime:timeStep:postTime;  
     n = zeros(size(rangeX,2),size(rangeT,2));
 
     for fileN = 1:size(fileList,2)
@@ -15,9 +16,9 @@ function [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, range
             epoch = epochRanges(epochN);
             
             timeList = nonzeros(histogramBounds(epoch,:));
-            for pair=1:2:size(timeList,2)
-                timeList(pair) = timeList(pair) + rangeT(1);
-                timeList(pair+1) = timeList(pair) + rangeT(end);
+            for pair=1:2:size(timeList,1)
+                timeList(pair+1) = timeList(pair) + postTime;
+                timeList(pair) = timeList(pair) + preTime;
             end
             sampleBounds = convertToSamples(timeList);
                         
@@ -26,7 +27,7 @@ function [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, range
                 [smoothX, wrappedX] = smoothUnwrap(data.X(sampleList), daqParams.xOutputCal, 0);
                 binnedX = histReady(wrappedX);
                 timeTrace = getExpTime(size(binnedX,1));
-                timeTrace = timeTrace' - timeTrace(1) + rangeT(1);
+                timeTrace = timeTrace' - timeTrace(1) + rangeT(1);                
                 n = n + hist3([binnedX,timeTrace],{rangeX,rangeT});
             end
             

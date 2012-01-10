@@ -18,13 +18,13 @@ function expTime = getExpTime(varargin)
        disp('Generating new timing sync from file.');
    elseif nargin == 1
        nSamples = varargin{1};       
-       load('timingSync.mat');     
+       load('./Utilities/timingSync.mat');     
        expTime = (1:nSamples)./(rawRate + rateError) + tOffset;
        return;
    elseif nargin == 2
        startTime = varargin{1};
        endTime = varargin{2};
-       load('timingSync.mat');  
+       load('./Utilities/timingSync.mat');  
        expTime = startTime:1/(rawRate + rateError):endTime;
        expTime = expTime';
        return;
@@ -103,7 +103,7 @@ function expTime = getExpTime(varargin)
    tOffset = bestOffset;
    rateError = bestRate;
    rawRate = daqParams.SampleRate;
-   save('./timingSync.mat','tOffset','rateError','rawRate');
+   save('./Utiltiies/timingSync.mat','tOffset','rateError','rawRate');
    
    
    

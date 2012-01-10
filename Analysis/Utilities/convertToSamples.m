@@ -3,6 +3,6 @@
 %
 function outputs = convertToSamples(inputTimes)
 
-    load('timingSync.mat');     
+    load('./Utilities/timingSync.mat');     
        
     outputs = round((inputTimes - tOffset).*(rawRate + rateError));
