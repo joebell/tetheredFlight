@@ -1,5 +1,5 @@
 %%
-function modelFun = fitModel(means, n)
+function modelFun = fitModel(means, n, rangeX, rangedX)
 
 %% Number of terms to fit
 nExponential = 5;
@@ -26,8 +26,11 @@ nPeriodic = 5;
 
  %% Do the fit
  
+        [angleFit,speedFit] = meshgrid(rangeX,rangedX);
+        dataToFit = means';
+ 
     % Weight by the number of points in each bin
     options = fitoptions('Weights',n(:));
-    [cfun,gof,output] = fit([angleFit(:),speedFit(:)],dataToFit(:),ffun,options);
+    [modelFun,gof,output] = fit([angleFit(:),speedFit(:)],dataToFit(:),ffun,options);
         
     
