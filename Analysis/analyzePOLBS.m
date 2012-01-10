@@ -246,11 +246,10 @@ for nEpoch = 1:10;
     plotBands(timeTrace,traces,'b');
     xlim([timeTrace(1) timeTrace(end)]);
     ylim([-800 800]);
-    xlabel('Time (sec)');
 end
 subplot(10,2,1); title('EV');
-subplot(10,2,11);
-ylabel('dWBA/dt (cV/sec)');
+subplot(10,2,11); ylabel('dWBA/dt (cV/sec)');
+subplot(10,2,19); xlabel('Time (sec)');
 
 odorEpochList = 14:23;
 for nEpoch = 1:10;
@@ -262,11 +261,10 @@ for nEpoch = 1:10;
     plotBands(timeTrace,traces,'b');
     xlim([timeTrace(1) timeTrace(end)]);
     ylim([-800 800]);
-    xlabel('Time (sec)');
 end
 subplot(10,2,2); title('Odor');
-subplot(10,2,12);
-ylabel('dWBA/dt (cV/sec)');
+subplot(10,2,12); ylabel('dWBA/dt (cV/sec)');
+subplot(10,2,20); xlabel('Time (sec)');
 
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
