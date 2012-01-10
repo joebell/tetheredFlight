@@ -93,6 +93,7 @@ set(gca,'XTick',[90 270]);
 set(gca,'YTick',[]);
 title('Box + Odor P(angle)');
 
+bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
 
 %% Next generate phase space plots
@@ -225,4 +226,5 @@ set(h,'ButtonDownFcn',{@plotTrajectory,modelFun});
 plot2dFormat();
 title('Box + Odor Model <dWBA/dt>');
 
+bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
