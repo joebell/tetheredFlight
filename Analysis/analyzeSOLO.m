@@ -1,7 +1,7 @@
 %%
 function analyzeSOLO(experiment)
 
-fileList = returnFileList(experiment);
+fileList = returnFileList(experiment); 
 
 %% Histogram ranges
 rangeX = 3.75:3.75:360;
