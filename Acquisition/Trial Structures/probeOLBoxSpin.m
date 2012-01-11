@@ -5,7 +5,7 @@
 global ts;
 
 center = 0;
-gain = -1;
+gain = -6;
  
 % Format: {time, visStim} 
 %          [Mode, K0, K1, K2]
