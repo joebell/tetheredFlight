@@ -2,7 +2,6 @@ function analyzePOLBS(experiment)
 
 fileList = returnFileList(experiment);
 
-
 %% Histogram ranges
 rangeX = 3.75:3.75:360;
 rangedX = -1080:7.5:1080;
