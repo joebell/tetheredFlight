@@ -360,7 +360,7 @@ subplot(10,4,3); title('EV Model');
 spinVals = [720 540 360 180 90 -90 -180 -360 -540 -720];
 for epochN = 1:10
     subplot(10,4, 4*(epochN-1) + 4); hold on;
-    spins = ones(size(rangeX,2),1) .* spinVals(epochN);
+    spins = ones(1,size(rangeX,2)) .* spinVals(epochN);
     evModel = epochModels{3};
     evResp = evModel(rangeX,spins);
     plot(rangeX,evResp,'Color','r','LineWidth',2);
