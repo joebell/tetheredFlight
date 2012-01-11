@@ -327,6 +327,10 @@ for epochN = 1:10
     % end
     xlim([rangeX(1) rangeX(end)]);
     ylim([-500 500]);
+    set(gca,'XTick',[90 180 270 360]);
+    line(xlim(),[0 0],'k');
+    line([90 90],ylim(),'k');
+    line([270 270],ylim(),'k');
 end
 subplot(10,4,1); title('EV Data');
 
@@ -342,6 +346,10 @@ for epochN = 1:10
     % end
     xlim([rangeX(1) rangeX(end)]);
     ylim([-500 500]);
+    set(gca,'XTick',[90 180 270 360]);
+    line(xlim(),[0 0],'k');
+    line([90 90],ylim(),'k');
+    line([270 270],ylim(),'k');
 end
 subplot(10,4,2); title('Odor Data');
 
@@ -353,9 +361,13 @@ for epochN = 1:10
     disp(size(rangeX));
     disp(size(spins));
     evResp = evModel(rangeX,spins);
-    plot(rangeX,evResp,'Color','b','LineWidth',2);
+    plot(rangeX,evResp,'Color','b','LineWidth',1);
     xlim([rangeX(1) rangeX(end)]);
     ylim([-500 500]);
+    set(gca,'XTick',[90 180 270 360]);
+    line(xlim(),[0 0],'k');
+    line([90 90],ylim(),'k');
+    line([270 270],ylim(),'k');
 end
 subplot(10,4,3); title('EV Model');
 
@@ -364,10 +376,17 @@ for epochN = 1:10
     subplot(10,4, 4*(epochN-1) + 4); hold on;
     spins = ones(1,size(rangeX,2)) .* spinVals(epochN);
     evModel = epochModels{3};
-    evResp = evModel(rangeX,spins');
-    plot(rangeX,evResp,'Color','r','LineWidth',2);
+    evResp = evModel(rangeX,spins);
+    plot(rangeX,evResp,'Color','r','LineWidth',1);
     xlim([rangeX(1) rangeX(end)]);
     ylim([-500 500]);
+    set(gca,'XTick',[90 180 270 360]);
+    line(xlim(),[0 0],'k');
+    line([90 90],ylim(),'k');
+    line([270 270],ylim(),'k');
 end
 subplot(10,4,4); title('Odor Model');
+
+bigTitle(['Experiment: ',experiment]);
+codeStampFigure(gcf);
 
