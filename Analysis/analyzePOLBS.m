@@ -267,3 +267,43 @@ subplot(10,2,20); xlabel('Time (sec)');
 
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
+
+%% OL Time Domain Plots
+
+OLTimeDomainDWBA = figure();
+
+EVepochList = 2:11;
+preTime = 0;
+postTime = 10;
+
+for nEpoch = 1:10;
+    preTime = -2;
+    postTime = 11;
+    epochRanges = EVepochList(nEpoch);
+    subplot(10,2,(nEpoch - 1)*2 + 1); hold on;
+    [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
+    plotBands(timeTrace,traces,'b');
+    xlim([timeTrace(1) timeTrace(end)]);
+    ylim([-300 300]);
+end
+subplot(10,2,1); title('EV');
+subplot(10,2,11); ylabel('dWBA (cV/sec)');
+subplot(10,2,19); xlabel('Time (sec)');
+
+odorEpochList = 14:23;
+for nEpoch = 1:10;
+    preTime = -2;
+    postTime = 11;
+    epochRanges = odorEpochList(nEpoch);
+    subplot(10,2,(nEpoch - 1)*2 + 2); hold on;
+    [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
+    plotBands(timeTrace,traces,'b');
+    xlim([timeTrace(1) timeTrace(end)]);
+    ylim([-300 300]);
+end
+subplot(10,2,2); title('Odor');
+subplot(10,2,12); ylabel('dWBA (cV/sec)');
+subplot(10,2,20); xlabel('Time (sec)');
+
+bigTitle(['Experiment: ',experiment]);
+codeStampFigure(gcf);
