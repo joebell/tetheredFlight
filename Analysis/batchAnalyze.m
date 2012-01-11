@@ -1,8 +1,8 @@
 function batchAnalyze()
 
      analyzeSOLO('120104-g1');
-%     analyzeSOLO('120104-g2');
-%     analyzeSOLO('120104-g6');
+     analyzeSOLO('120104-g2');
+     analyzeSOLO('120104-g6');
 %     analyzePOLBS('120104-g1-POLBS'); close all;
 %     analyzePOLBS('120104-g2-POLBS'); close all;
 %     analyzePOLBS('120104-g6-POLBS'); close all;
@@ -13,3 +13,4 @@ function batchAnalyze()
 
 
 
+ 

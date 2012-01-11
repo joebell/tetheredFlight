@@ -23,10 +23,11 @@ title('P(angle|time)');
 set(gca,'YTick',[90 270]);
 ylabel('Angle');
 
-pause();
+
 
 subplot(6,7,6); hold on;
 [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
+ns = ns ./ 10000;
 plotBands(rangeX,ns,'r');
 xlim([rangeX(1) rangeX(end)]);
 line([90 90],ylim(),'Color','k');
@@ -35,7 +36,7 @@ set(gca,'XTick',[90 270]);
 set(gca,'YTick',[]);
 title('P(angle)');
 
-pause();
+
 
 subplot(6,7,7); hold on;
 for i=1:size(ns,1)
@@ -43,12 +44,10 @@ for i=1:size(ns,1)
 end
 xlim([rangeX(1) rangeX(end)]);
 set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
+set(gca,'YTick',[0]);
 title('P(angle)');
 line([90 90],ylim(),'Color','k');
 line([270 270],ylim(),'Color','k');
-
-pause();
 
 for epoch = 2:6
     subplot(6,7,((epoch-1)*7 + 1):((epoch-1)*7 + 5)); hold on;
@@ -61,10 +60,11 @@ for epoch = 2:6
     set(gca,'YTick',[90 270]);
     ylabel('Angle');
     
-    pause();
+
     
     subplot(6,7,(epoch-1)*7 + 6); hold on;
     [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
+    ns = ns ./ 10000;
     plotBands(rangeX,ns,'r');
     xlim([rangeX(1) rangeX(end)]);
     set(gca,'XTick',[90 270]);
@@ -72,7 +72,7 @@ for epoch = 2:6
     line([90 90],ylim(),'Color','k');
     line([270 270],ylim(),'Color','k');
     
-    pause();
+
     
     subplot(6,7,(epoch-1)*7 + 7); hold on;
     for i=1:size(ns,1)
@@ -84,7 +84,7 @@ for epoch = 2:6
     line([90 90],ylim(),'Color','k');
     line([270 270],ylim(),'Color','k');
     
-    pause();
+
     
 end
 
@@ -95,7 +95,7 @@ subplot(6,7,(4-1)*7 + 6); ylabel('Box + Odor');
 subplot(6,7,(5-1)*7 + 6); ylabel('Box + EV');
 subplot(6,7,(6-1)*7 + 6); ylabel('Box + Odor');
 
-pause();
+
 
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
