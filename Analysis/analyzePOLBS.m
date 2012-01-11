@@ -328,9 +328,9 @@ for epochN = 1:10
     xlim([rangeX(1) rangeX(end)]);
     ylim([-500 500]);
     set(gca,'XTick',[90 180 270 360]);
-    line(xlim(),[0 0],'k');
-    line([90 90],ylim(),'k');
-    line([270 270],ylim(),'k');
+    line(xlim(),[0 0],'Color','k');
+    line([90 90],ylim(),'Color','k');
+    line([270 270],ylim(),'Color','k');
 end
 subplot(10,4,1); title('EV Data');
 
@@ -347,9 +347,9 @@ for epochN = 1:10
     xlim([rangeX(1) rangeX(end)]);
     ylim([-500 500]);
     set(gca,'XTick',[90 180 270 360]);
-    line(xlim(),[0 0],'k');
-    line([90 90],ylim(),'k');
-    line([270 270],ylim(),'k');
+    line(xlim(),[0 0],'Color','k');
+    line([90 90],ylim(),'Color','k');
+    line([270 270],ylim(),'Color','k');
 end
 subplot(10,4,2); title('Odor Data');
 
@@ -365,9 +365,9 @@ for epochN = 1:10
     xlim([rangeX(1) rangeX(end)]);
     ylim([-500 500]);
     set(gca,'XTick',[90 180 270 360]);
-    line(xlim(),[0 0],'k');
-    line([90 90],ylim(),'k');
-    line([270 270],ylim(),'k');
+    line(xlim(),[0 0],'Color','k');
+    line([90 90],ylim(),'Color','k');
+    line([270 270],ylim(),'Color','k');
 end
 subplot(10,4,3); title('EV Model');
 
@@ -381,9 +381,9 @@ for epochN = 1:10
     xlim([rangeX(1) rangeX(end)]);
     ylim([-500 500]);
     set(gca,'XTick',[90 180 270 360]);
-    line(xlim(),[0 0],'k');
-    line([90 90],ylim(),'k');
-    line([270 270],ylim(),'k');
+    line(xlim(),[0 0],'Color','k');
+    line([90 90],ylim(),'Color','k');
+    line([270 270],ylim(),'Color','k');
 end
 subplot(10,4,4); title('Odor Model');
 
