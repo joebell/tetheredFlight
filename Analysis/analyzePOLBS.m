@@ -7,93 +7,93 @@ rangeX = 3.75:3.75:360;
 rangedX = -1080:7.5:1080;
 ranged2X = -300:4:300;
 
-%% First generate OL plots
-OLepochs = [1 12 13];
-
-OLTimeFig = figure();
-preTime = 0;
-timeStep = 1;
-
-postTime = 115;
-subplot(4,3,1:3);
-epochRanges = OLepochs(1);
-[n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, preTime, postTime, timeStep, rangeX);
-h = pcolor(rangeT,rangeX,n);
-set(h,'EdgeColor','none');
-xlim([rangeT(1) rangeT(end)]);
-ylim([rangeX(1) rangeX(end)]);
-title('Vert. Stripe P(angle|time)');
-xlabel('Time');
-set(gca,'YTick',[90 180 270 360]);
-ylabel('Angle');
-
-postTime = 120;
-subplot(4,3,4:6);
-epochRanges = OLepochs(2);
-[n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, preTime, postTime, timeStep, rangeX);
-h = pcolor(rangeT,rangeX,n);
-set(h,'EdgeColor','none');
-xlim([rangeT(1) rangeT(end)]);
-ylim([rangeX(1) rangeX(end)]);
-title('Box + EV P(angle|time)');
-xlabel('Time');
-set(gca,'YTick',[90 180 270 360]);
-ylabel('Angle');
-
-postTime = 120;
-subplot(4,3,7:9);
-epochRanges = OLepochs(3);
-[n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, preTime, postTime, timeStep, rangeX);
-h = pcolor(rangeT,rangeX,n);
-set(h,'EdgeColor','none');
-xlim([rangeT(1) rangeT(end)]);
-ylim([rangeX(1) rangeX(end)]);
-title('Box + Odor P(angle|time)');
-xlabel('Time');
-set(gca,'YTick',[90 180 270 360]);
-ylabel('Angle');
-
-postTime = 115;
-epochRanges = OLepochs(1);
-subplot(4,3,10); hold on;
-[ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
-plotBands(rangeX,ns,'r');
-for i=1:size(ns,1)
-    plot(rangeX,ns(i,:));
-end
-xlim([rangeX(1) rangeX(end)]);
-set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
-title('Vert. Bar P(angle)');
-
-postTime = 120;
-epochRanges = OLepochs(2);
-subplot(4,3,11); hold on;
-[ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
-plotBands(rangeX,ns,'r');
-for i=1:size(ns,1)
-    plot(rangeX,ns(i,:));
-end
-xlim([rangeX(1) rangeX(end)]);
-set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
-title('Box + EV P(angle)');
-
-postTime = 120;
-epochRanges = OLepochs(3);
-subplot(4,3,12); hold on;
-[ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
-plotBands(rangeX,ns,'r');
-for i=1:size(ns,1)
-    plot(rangeX,ns(i,:));
-end
-xlim([rangeX(1) rangeX(end)]);
-set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
-title('Box + Odor P(angle)');
-
-bigTitle(['Experiment: ',experiment]);
-codeStampFigure(gcf);
+% %% First generate OL plots
+% OLepochs = [1 12 13];
+% 
+% OLTimeFig = figure();
+% preTime = 0;
+% timeStep = 1;
+% 
+% postTime = 115;
+% subplot(4,3,1:3);
+% epochRanges = OLepochs(1);
+% [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, preTime, postTime, timeStep, rangeX);
+% h = pcolor(rangeT,rangeX,n);
+% set(h,'EdgeColor','none');
+% xlim([rangeT(1) rangeT(end)]);
+% ylim([rangeX(1) rangeX(end)]);
+% title('Vert. Stripe P(angle|time)');
+% xlabel('Time');
+% set(gca,'YTick',[90 180 270 360]);
+% ylabel('Angle');
+% 
+% postTime = 120;
+% subplot(4,3,4:6);
+% epochRanges = OLepochs(2);
+% [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, preTime, postTime, timeStep, rangeX);
+% h = pcolor(rangeT,rangeX,n);
+% set(h,'EdgeColor','none');
+% xlim([rangeT(1) rangeT(end)]);
+% ylim([rangeX(1) rangeX(end)]);
+% title('Box + EV P(angle|time)');
+% xlabel('Time');
+% set(gca,'YTick',[90 180 270 360]);
+% ylabel('Angle');
+% 
+% postTime = 120;
+% subplot(4,3,7:9);
+% epochRanges = OLepochs(3);
+% [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, preTime, postTime, timeStep, rangeX);
+% h = pcolor(rangeT,rangeX,n);
+% set(h,'EdgeColor','none');
+% xlim([rangeT(1) rangeT(end)]);
+% ylim([rangeX(1) rangeX(end)]);
+% title('Box + Odor P(angle|time)');
+% xlabel('Time');
+% set(gca,'YTick',[90 180 270 360]);
+% ylabel('Angle');
+% 
+% postTime = 115;
+% epochRanges = OLepochs(1);
+% subplot(4,3,10); hold on;
+% [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
+% plotBands(rangeX,ns,'r');
+% for i=1:size(ns,1)
+%     plot(rangeX,ns(i,:));
+% end
+% xlim([rangeX(1) rangeX(end)]);
+% set(gca,'XTick',[90 270]);
+% set(gca,'YTick',[]);
+% title('Vert. Bar P(angle)');
+% 
+% postTime = 120;
+% epochRanges = OLepochs(2);
+% subplot(4,3,11); hold on;
+% [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
+% plotBands(rangeX,ns,'r');
+% for i=1:size(ns,1)
+%     plot(rangeX,ns(i,:));
+% end
+% xlim([rangeX(1) rangeX(end)]);
+% set(gca,'XTick',[90 270]);
+% set(gca,'YTick',[]);
+% title('Box + EV P(angle)');
+% 
+% postTime = 120;
+% epochRanges = OLepochs(3);
+% subplot(4,3,12); hold on;
+% [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
+% plotBands(rangeX,ns,'r');
+% for i=1:size(ns,1)
+%     plot(rangeX,ns(i,:));
+% end
+% xlim([rangeX(1) rangeX(end)]);
+% set(gca,'XTick',[90 270]);
+% set(gca,'YTick',[]);
+% title('Box + Odor P(angle)');
+% 
+% bigTitle(['Experiment: ',experiment]);
+% codeStampFigure(gcf);
 
 %% Next generate phase space plots
 
@@ -228,85 +228,85 @@ title('Box + Odor Model <dWBA/dt>');
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
 
-%% OL Time Domain Plots
-
-OLTimeDomain = figure();
-
-EVepochList = 2:11;
-preTime = 0;
-postTime = 10;
-
-for nEpoch = 1:10;
-    preTime = -2;
-    postTime = 11;
-    epochRanges = EVepochList(nEpoch);
-    subplot(10,2,(nEpoch - 1)*2 + 1); hold on;
-    [traces, timeTrace] = accumulateWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces,'b');
-    xlim([timeTrace(1) timeTrace(end)]);
-    ylim([-300 300]);
-end
-subplot(10,2,1); title('EV');
-subplot(10,2,11); ylabel('WBA (cV)');
-subplot(10,2,19); xlabel('Time (sec)');
-
-odorEpochList = 14:23;
-for nEpoch = 1:10;
-    preTime = -2;
-    postTime = 11;
-    epochRanges = odorEpochList(nEpoch);
-    subplot(10,2,(nEpoch - 1)*2 + 2); hold on;
-    [traces, timeTrace] = accumulateWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces,'b');
-    xlim([timeTrace(1) timeTrace(end)]);
-    ylim([-300 300]);
-end
-subplot(10,2,2); title('Odor');
-subplot(10,2,12); ylabel('WBA (cV)');
-subplot(10,2,20); xlabel('Time (sec)');
-
-bigTitle(['Experiment: ',experiment]);
-codeStampFigure(gcf);
-
-%% OL Time Domain Plots
-
-OLTimeDomainDWBA = figure();
-
-EVepochList = 2:11;
-preTime = 0;
-postTime = 10;
-
-for nEpoch = 1:10;
-    preTime = -2;
-    postTime = 11;
-    epochRanges = EVepochList(nEpoch);
-    subplot(10,2,(nEpoch - 1)*2 + 1); hold on;
-    [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces,'b');
-    xlim([timeTrace(1) timeTrace(end)]);
-    ylim([-300 300]);
-end
-subplot(10,2,1); title('EV');
-subplot(10,2,11); ylabel('dWBA (cV/sec)');
-subplot(10,2,19); xlabel('Time (sec)');
-
-odorEpochList = 14:23;
-for nEpoch = 1:10;
-    preTime = -2;
-    postTime = 11;
-    epochRanges = odorEpochList(nEpoch);
-    subplot(10,2,(nEpoch - 1)*2 + 2); hold on;
-    [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces,'b');
-    xlim([timeTrace(1) timeTrace(end)]);
-    ylim([-300 300]);
-end
-subplot(10,2,2); title('Odor');
-subplot(10,2,12); ylabel('dWBA (cV/sec)');
-subplot(10,2,20); xlabel('Time (sec)');
-
-bigTitle(['Experiment: ',experiment]);
-codeStampFigure(gcf);
+% %% OL Time Domain Plots
+% 
+% OLTimeDomain = figure();
+% 
+% EVepochList = 2:11;
+% preTime = 0;
+% postTime = 10;
+% 
+% for nEpoch = 1:10;
+%     preTime = -2;
+%     postTime = 11;
+%     epochRanges = EVepochList(nEpoch);
+%     subplot(10,2,(nEpoch - 1)*2 + 1); hold on;
+%     [traces, timeTrace] = accumulateWBATraces(fileList,epochRanges, preTime, postTime);
+%     plotBands(timeTrace,traces,'b');
+%     xlim([timeTrace(1) timeTrace(end)]);
+%     ylim([-300 300]);
+% end
+% subplot(10,2,1); title('EV');
+% subplot(10,2,11); ylabel('WBA (cV)');
+% subplot(10,2,19); xlabel('Time (sec)');
+% 
+% odorEpochList = 14:23;
+% for nEpoch = 1:10;
+%     preTime = -2;
+%     postTime = 11;
+%     epochRanges = odorEpochList(nEpoch);
+%     subplot(10,2,(nEpoch - 1)*2 + 2); hold on;
+%     [traces, timeTrace] = accumulateWBATraces(fileList,epochRanges, preTime, postTime);
+%     plotBands(timeTrace,traces,'b');
+%     xlim([timeTrace(1) timeTrace(end)]);
+%     ylim([-300 300]);
+% end
+% subplot(10,2,2); title('Odor');
+% subplot(10,2,12); ylabel('WBA (cV)');
+% subplot(10,2,20); xlabel('Time (sec)');
+% 
+% bigTitle(['Experiment: ',experiment]);
+% codeStampFigure(gcf);
+% 
+% %% OL Time Domain Plots
+% 
+% OLTimeDomainDWBA = figure();
+% 
+% EVepochList = 2:11;
+% preTime = 0;
+% postTime = 10;
+% 
+% for nEpoch = 1:10;
+%     preTime = -2;
+%     postTime = 11;
+%     epochRanges = EVepochList(nEpoch);
+%     subplot(10,2,(nEpoch - 1)*2 + 1); hold on;
+%     [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
+%     plotBands(timeTrace,traces,'b');
+%     xlim([timeTrace(1) timeTrace(end)]);
+%     ylim([-300 300]);
+% end
+% subplot(10,2,1); title('EV');
+% subplot(10,2,11); ylabel('dWBA (cV/sec)');
+% subplot(10,2,19); xlabel('Time (sec)');
+% 
+% odorEpochList = 14:23;
+% for nEpoch = 1:10;
+%     preTime = -2;
+%     postTime = 11;
+%     epochRanges = odorEpochList(nEpoch);
+%     subplot(10,2,(nEpoch - 1)*2 + 2); hold on;
+%     [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
+%     plotBands(timeTrace,traces,'b');
+%     xlim([timeTrace(1) timeTrace(end)]);
+%     ylim([-300 300]);
+% end
+% subplot(10,2,2); title('Odor');
+% subplot(10,2,12); ylabel('dWBA (cV/sec)');
+% subplot(10,2,20); xlabel('Time (sec)');
+% 
+% bigTitle(['Experiment: ',experiment]);
+% codeStampFigure(gcf);
 
 %% Generate OL-CL model comparisons
 
@@ -350,7 +350,9 @@ for epochN = 1:10
     subplot(10,4, 4*(epochN-1) + 3); hold on;
     spins = ones(size(rangeX,2),1) .* spinVals(epochN);
     evModel = epochModels{2};
-    evResp = evModel(rangeX,spins);
+    disp(size(rangeX));
+    disp(size(spins));
+    evResp = evModel(rangeX',spins');
     plot(rangeX,evResp,'Color','b','LineWidth',2);
     xlim([rangeX(1) rangeX(end)]);
     ylim([-500 500]);
@@ -362,7 +364,7 @@ for epochN = 1:10
     subplot(10,4, 4*(epochN-1) + 4); hold on;
     spins = ones(1,size(rangeX,2)) .* spinVals(epochN);
     evModel = epochModels{3};
-    evResp = evModel(rangeX,spins);
+    evResp = evModel(rangeX',spins');
     plot(rangeX,evResp,'Color','r','LineWidth',2);
     xlim([rangeX(1) rangeX(end)]);
     ylim([-500 500]);
