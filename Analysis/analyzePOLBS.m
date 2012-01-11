@@ -24,7 +24,7 @@ xlim([rangeT(1) rangeT(end)]);
 ylim([rangeX(1) rangeX(end)]);
 title('Vert. Stripe P(angle|time)');
 xlabel('Time');
-set(gca,'YTick',[90 180 270 360]);
+set(gca,'YTick',[90 270]);
 ylabel('Angle');
 
 postTime = 120;
