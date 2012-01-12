@@ -4,7 +4,8 @@ function analyzeSOLO(experiment)
 fileList = returnFileList(experiment); 
 
 %% Histogram ranges
-rangeX = 3.75:3.75:360;
+%rangeX = 3.75:3.75:360;
+rangeX = 7.5:7.5:360;
 rangedX = -1080:7.5:1080;
 ranged2X = -300:4:300;
 timeStep = 2;
