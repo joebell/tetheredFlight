@@ -27,7 +27,7 @@ ylabel('Angle');
 
 subplot(6,7,6); hold on;
 [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
-ns = ns ./ 10000;
+ns = ns ./ (1000 * postTime);
 plotBands(rangeX,ns,'r');
 maxY = max(ns(:));
 ylim([0 maxY*1.05]);
@@ -68,7 +68,7 @@ for epoch = 2:6
     
     subplot(6,7,(epoch-1)*7 + 6); hold on;
     [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
-    ns = ns ./ 10000;
+    ns = ns ./ (1000 * postTime);
     plotBands(rangeX,ns,'r');
     maxY = max(ns(:));
     ylim([0 maxY*1.05]);
