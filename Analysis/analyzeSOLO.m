@@ -90,7 +90,6 @@ for epoch = 2:6
     line([90 90],ylim(),'Color','k');
     line([270 270],ylim(),'Color','k');
     
-    disp(maxY);
     
 end
 
