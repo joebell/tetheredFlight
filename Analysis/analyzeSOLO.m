@@ -29,6 +29,8 @@ subplot(6,7,6); hold on;
 [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
 ns = ns ./ 10000;
 plotBands(rangeX,ns,'r');
+maxY = max(ns(:));
+ylim([0 maxY*1.05]);
 xlim([rangeX(1) rangeX(end)]);
 line([90 90],ylim(),'Color','k');
 line([270 270],ylim(),'Color','k');
@@ -66,6 +68,8 @@ for epoch = 2:6
     [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
     ns = ns ./ 10000;
     plotBands(rangeX,ns,'r');
+    maxY = max(ns(:));
+    ylim([0 maxY*1.05]);
     xlim([rangeX(1) rangeX(end)]);
     set(gca,'XTick',[90 270]);
     set(gca,'YTick',[]);
@@ -78,6 +82,8 @@ for epoch = 2:6
     for i=1:size(ns,1)
         plot(rangeX,ns(i,:));
     end
+    maxY = max(ns(:));
+    ylim([0 maxY*1.05]);
     xlim([rangeX(1) rangeX(end)]);
     set(gca,'XTick',[90 270]);
     set(gca,'YTick',[]);
