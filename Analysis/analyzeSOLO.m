@@ -14,7 +14,7 @@ littleMaxY = .05;
 figList{1} = figure();
 
 
-subplot(6,7,1:5); hold on;
+subplot(6,6,1:4); hold on;
 epochRanges = 1; preTime = 0; postTime = 599;
 [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, preTime, postTime, timeStep, rangeX);
 h = pcolor(rangeT,rangeX,n);
@@ -27,7 +27,7 @@ ylabel('Angle');
 
 
 
-subplot(6,7,6); hold on;
+subplot(6,6,5); hold on;
 [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
 ns = ns ./ (1000 * postTime);
 plotBands(rangeX,ns,'r');
@@ -41,7 +41,7 @@ title('P(angle)');
 
 
 
-subplot(6,7,7); hold on;
+subplot(6,6,6); hold on;
 for i=1:size(ns,1)
     plot(rangeX,ns(i,:));
 end
@@ -55,7 +55,7 @@ line([270 270],ylim(),'Color','k');
 
 
 for epoch = 2:6
-    subplot(6,7,((epoch-1)*7 + 1):((epoch-1)*7 + 5)); hold on;
+    subplot(6,6,((epoch-1)*6 + 1):((epoch-1)*6 + 4)); hold on;
     epochRanges = epoch; preTime = 0; postTime = 120;
     [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, preTime, postTime, timeStep, rangeX);
     h = pcolor(rangeT,rangeX,n);
@@ -67,7 +67,7 @@ for epoch = 2:6
     
 
     
-    subplot(6,7,(epoch-1)*7 + 6); hold on;
+    subplot(6,6,(epoch-1)*6 + 5); hold on;
     [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
     ns = ns ./ (1000 * postTime);
     plotBands(rangeX,ns,'r');
@@ -80,7 +80,7 @@ for epoch = 2:6
     
 
     
-    subplot(6,7,(epoch-1)*7 + 7); hold on;
+    subplot(6,6,(epoch-1)*6 + 6); hold on;
     for i=1:size(ns,1)
         plot(rangeX,ns(i,:));
     end
@@ -94,12 +94,12 @@ for epoch = 2:6
     
 end
 
-subplot(6,7,(1-1)*7 + 6); ylabel('Vert. Bar');
-subplot(6,7,(2-1)*7 + 6); ylabel('Box');
-subplot(6,7,(3-1)*7 + 6); ylabel('Box + EV');
-subplot(6,7,(4-1)*7 + 6); ylabel('Box + Odor');
-subplot(6,7,(5-1)*7 + 6); ylabel('Box + EV');
-subplot(6,7,(6-1)*7 + 6); ylabel('Box + Odor');
+subplot(6,6,(1-1)*6 + 5); ylabel('Vert. Bar');
+subplot(6,6,(2-1)*6 + 5); ylabel('Box');
+subplot(6,6,(3-1)*6 + 5); ylabel('Box + EV');
+subplot(6,6,(4-1)*6 + 5); ylabel('Box + Odor');
+subplot(6,6,(5-1)*6 + 5); ylabel('Box + EV');
+subplot(6,6,(6-1)*6 + 5); ylabel('Box + Odor');
 
 
 
