@@ -2,7 +2,9 @@ function saveMultiPage(figList,experimentName)
 
 settings = dataCzarSettings();
 batchName = [settings.dataDir,'BATCH-',experimentName,'.pdf'];
-delete(batchName);
+if size(dir(batchName),1) > 0
+    delete(batchName);
+end
 for fig = 1:size(figList,2)
     
     figure(fig);

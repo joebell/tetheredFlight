@@ -8,8 +8,8 @@ rangeX = 3.75:3.75:360;
 rangedX = -1080:7.5:1080;
 ranged2X = -300:4:300;
 timeStep = 2;
-bigMaxY = .2;
-littleMaxY = .1;
+bigMaxY = .15;
+littleMaxY = .05;
 
 figList{1} = figure();
 
