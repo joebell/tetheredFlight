@@ -117,6 +117,7 @@ plotBands(timeTrace,sinTraces,'b');
 ylim([-1 1]); ylabel('Vert. Bar'); set(gca,'YTick',[-1 0 1]);
 xlim([preTime postTime]);
 title('sin(angle)');
+line(xlim(),[0 0],'Color','k');
 
 for nEpoch = 2:6
     subplot(6,6,(nEpoch-1)*6 + (1:5));
@@ -126,6 +127,7 @@ for nEpoch = 2:6
     plotBands(timeTrace,sinTraces,'b');
     ylim([-1 1]); set(gca,'YTick',[-1 0 1]);
     xlim([preTime postTime]);
+    line(xlim(),[0 0],'Color','k');
 end
 xlabel('Time (sec)');
 
