@@ -51,6 +51,8 @@ title('P(angle)');
 line([90 90],ylim(),'Color','k');
 line([270 270],ylim(),'Color','k');
 
+disp(maxY);
+
 for epoch = 2:6
     subplot(6,7,((epoch-1)*7 + 1):((epoch-1)*7 + 5)); hold on;
     epochRanges = epoch; preTime = 0; postTime = 120;
@@ -90,7 +92,7 @@ for epoch = 2:6
     line([90 90],ylim(),'Color','k');
     line([270 270],ylim(),'Color','k');
     
-
+    disp(maxY);
     
 end
 
