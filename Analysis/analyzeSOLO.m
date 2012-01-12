@@ -186,7 +186,7 @@ sinTraces = sign(sin(traces*2*pi/360));
 plotBands(timeTrace,sinTraces,'b');
 ylim([-1 1]); ylabel('Vert. Bar'); set(gca,'YTick',[-1 0 1]);
 xlim([preTime postTime]);
-title('sin(angle)');
+title('P.I.');
 line(xlim(),[0 0],'Color','k');
 
     subplot(6,6,(1-1)*6 + 6);
