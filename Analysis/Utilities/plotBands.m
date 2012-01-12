@@ -2,7 +2,7 @@ function plotBands(time,dataMatrix,lineColor)
 
 meanTrace = mean(dataMatrix,1);
 semTrace  = std(dataMatrix,1)./sqrt(size(dataMatrix,1));
-
+hold on;
 h = area([time;time]',[(meanTrace-semTrace);(2*semTrace)]',0);
         set(h,'EdgeColor','none');
         set(h,'FaceColor','none');
