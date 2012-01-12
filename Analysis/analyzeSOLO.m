@@ -106,6 +106,38 @@ subplot(6,6,(6-1)*6 + 5); ylabel('Box + Odor');
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
 
+%% Make PI trace figure
+figList{2} = figure();
+
+subplot(6,1,1);
+epochRanges = 1; preTime = 0; postTime = 599;
+[traces, timeTrace] = accumulateXTraces(fileList,epochRanges, preTime, postTime);
+sinTraces = sin(traces);
+plotBands(timeTrace,sinTraces,'b');
+ylim([-1 1]); ylabel('Vert. Bar'); set(gca,'YTick',[-1 0 1]);
+xlim([preTime postTime]);
+title('sin(angle)');
+
+for nEpoch = 2:6
+    subplot(6,1,nEpoch);
+    epochRanges = nEpoch; preTime = 0; postTime = 120;
+    [traces, timeTrace] = accumulateXTraces(fileList,epochRanges, preTime, postTime);
+    sinTraces = sin(traces);
+    plotBands(timeTrace,sinTraces,'b');
+    ylim([-1 1]); set(gca,'YTick',[-1 0 1]);
+    xlim([preTime postTime]);
+end
+xlabel('Time (sec)');
+
+subplot(6,1,2); ylabel('Box');
+subplot(6,1,3); ylabel('Box + EV');
+subplot(6,1,4); ylabel('Box + Odor');
+subplot(6,1,5); ylabel('Box + EV');
+subplot(6,1,6); ylabel('Box + Odor');
+
+bigTitle(['Experiment: ',experiment]);
+codeStampFigure(gcf);
+
 %% Save figs!
 
 saveMultiPage(figList,experiment);
