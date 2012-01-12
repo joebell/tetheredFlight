@@ -21,8 +21,8 @@ function plotTrajectory(src, eventdata, cfun)
     function [X,dX,t] = runSystem(initCond,f,maxT)
 
 
-    options = odeset('RelTol',10^-5,'Refine',50);
-    [t,Y] = ode15s(@F,[0 maxT],initCond,options);
+    options = odeset('RelTol',10^-5,'Refine',30);
+    [t,Y] = ode45(@F,[0 maxT],initCond,options);
 
     X = Y(:,1);
     dX = Y(:,2);
