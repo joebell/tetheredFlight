@@ -133,8 +133,12 @@ for nEpoch = 2:6
     % Protect against NaN's
     ind = find(isnan(sinTraces)); sinTraces(ind) = 0;
     meanSin = mean(sinTraces,2);
-    Xones = ones(size(sinTraces,1),1);
+    Xones = ones(size(sinTraces,1),1) + .2*rand(size(sinTraces,1),1);
     scatter(meanSin(:),Xones(:),'+'); xlim([-1 1]); ylim([0 2]);
+    line([0 0],ylim(),'Color','k');
+    meanMean = mean(meanSin);
+    stErr = std(meanSin)./sqrt(size(meanSin(:),1));
+    line([meanMean meanMean], [-.4 .4],'Color','r');
     set(gca,'YTick',[]);
     set(gca,'XTick',[-1 0 1]);
     
