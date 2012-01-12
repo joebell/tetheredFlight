@@ -109,7 +109,7 @@ littleMaxY = .05;
 %% Make PI trace figure
 figList{2} = figure();
 
-subplot(6,1,1);
+subplot(6,6,1:5);
 epochRanges = 1; preTime = 0; postTime = 599;
 [traces, timeTrace] = accumulateXTraces(fileList,epochRanges, preTime, postTime);
 sinTraces = sin(traces*2*pi/360);
@@ -119,7 +119,7 @@ xlim([preTime postTime]);
 title('sin(angle)');
 
 for nEpoch = 2:6
-    subplot(6,1,nEpoch);
+    subplot(6,6,(nEpoch-1)*6 + (1:5));
     epochRanges = nEpoch; preTime = 0; postTime = 120;
     [traces, timeTrace] = accumulateXTraces(fileList,epochRanges, preTime, postTime);
     sinTraces = sin(traces*2*pi/360);
@@ -129,11 +129,11 @@ for nEpoch = 2:6
 end
 xlabel('Time (sec)');
 
-subplot(6,1,2); ylabel('Box');
-subplot(6,1,3); ylabel('Box + EV');
-subplot(6,1,4); ylabel('Box + Odor');
-subplot(6,1,5); ylabel('Box + EV');
-subplot(6,1,6); ylabel('Box + Odor');
+subplot(6,6,(2-1)*6 + (1:5)); ylabel('Box');
+subplot(6,6,(3-1)*6 + (1:5)); ylabel('Box + EV');
+subplot(6,6,(4-1)*6 + (1:5)); ylabel('Box + Odor');
+subplot(6,6,(5-1)*6 + (1:5)); ylabel('Box + EV');
+subplot(6,6,(6-1)*6 + (1:5)); ylabel('Box + Odor');
 
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
