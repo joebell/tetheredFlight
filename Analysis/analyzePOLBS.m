@@ -187,11 +187,11 @@ plot2dFormat();
 
 
 postTime = 120;
-epochRanges = OLepochs(2);
+epochRanges = OLepochs(3);
 subplot(3,3,6);hold on;
 [means, n, rangeX, rangedX] = accumulatePhaseMeans(fileList,epochRanges, preTime, postTime, rangeX, rangedX);
-epochMeans{e} = means;
-epochNs{e} = n;
+epochMeans{3} = means;
+epochNs{3} = n;
 h = pcolor(rangeX,rangedX,means');
 set(h,'EdgeColor','none');
 xlim([rangeX(1) rangeX(end)]);
