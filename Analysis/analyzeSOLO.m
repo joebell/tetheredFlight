@@ -9,8 +9,8 @@ rangeX = 7.5:7.5:360;
 rangedX = -1080:7.5:1080;
 ranged2X = -300:4:300;
 timeStep = 2;
-bigMaxY = .20;
-littleMaxY = .08;
+bigMaxY = .25;
+littleMaxY = .1;
 
 figList{1} = figure();
 
