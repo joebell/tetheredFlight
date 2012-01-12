@@ -128,8 +128,17 @@ for nEpoch = 2:6
     ylim([-1 1]); set(gca,'YTick',[-1 0 1]);
     xlim([preTime postTime]);
     line(xlim(),[0 0],'Color','k');
+    
+    subplot(6,6,(nEpoch-1)*6 + 6);
+    meanSin = mean(sinTraces,2);
+    Xones = ones(size(sinTraces,1),1);
+    scatter(meanSin,Xones,'+'); xlim([-1 1]); ylim([0 2]);
+    set(gca,'YTick',[]);
+    set(gca,'XTick',[-1 0 1]);
+    
 end
-xlabel('Time (sec)');
+
+subplot(6,6,(6-1)*6 + (1:5)); xlabel('Time (sec)');
 
 subplot(6,6,(2-1)*6 + (1:5)); ylabel('Box');
 subplot(6,6,(3-1)*6 + (1:5)); ylabel('Box + EV');
