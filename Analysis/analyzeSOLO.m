@@ -132,6 +132,8 @@ for nEpoch = 2:6
     subplot(6,6,(nEpoch-1)*6 + 6);
     meanSin = mean(sinTraces,2);
     Xones = ones(size(sinTraces,1),1);
+    disp(meanSin);
+    disp(Xones);
     scatter(meanSin(:),Xones(:),'+'); xlim([-1 1]); ylim([0 2]);
     set(gca,'YTick',[]);
     set(gca,'XTick',[-1 0 1]);
