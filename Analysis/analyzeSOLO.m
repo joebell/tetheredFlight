@@ -119,6 +119,22 @@ xlim([preTime postTime]);
 title('sin(angle)');
 line(xlim(),[0 0],'Color','k');
 
+    subplot(6,6,(1-1)*6 + 6);
+    % Protect against NaN's
+    ind = find(isnan(sinTraces)); sinTraces(ind) = 0;
+    meanSin = mean(sinTraces,2);
+    Xones = ones(size(sinTraces,1),1) + .3*(rand(size(sinTraces,1),1)-.5);
+    scatter(meanSin(:),Xones(:),'o'); xlim([-1 1]); ylim([0 2]);
+    line([0 0],ylim(),'Color','k');
+    meanMean = mean(meanSin);
+    stErr = std(meanSin)./sqrt(size(meanSin(:),1));
+    line([meanMean meanMean], [-.4 .4]+1,'Color','r');
+    line([meanMean-stErr meanMean+stErr], [0 0]+1,'Color','r');
+    line([meanMean-stErr meanMean-stErr], [-.2 .2]+1,'Color','r');
+    line([meanMean+stErr meanMean+stErr], [-.2 .2]+1,'Color','r');
+    set(gca,'YTick',[]);
+    set(gca,'XTick',[-1 0 1]);
+
 for nEpoch = 2:6
     subplot(6,6,(nEpoch-1)*6 + (1:5));
     epochRanges = nEpoch; preTime = 0; postTime = 120;
@@ -133,7 +149,7 @@ for nEpoch = 2:6
     % Protect against NaN's
     ind = find(isnan(sinTraces)); sinTraces(ind) = 0;
     meanSin = mean(sinTraces,2);
-    Xones = ones(size(sinTraces,1),1) + .2*rand(size(sinTraces,1),1);
+    Xones = ones(size(sinTraces,1),1) + .3*(rand(size(sinTraces,1),1)-.5);
     scatter(meanSin(:),Xones(:),'o'); xlim([-1 1]); ylim([0 2]);
     line([0 0],ylim(),'Color','k');
     meanMean = mean(meanSin);
