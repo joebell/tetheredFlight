@@ -36,7 +36,7 @@ xlim([rangeX(1) rangeX(end)]);
 line([90 90],ylim(),'Color','k');
 line([270 270],ylim(),'Color','k');
 set(gca,'XTick',[90 270]);
-set(gca,'YTick',[0 bigMaxY/3 2*bigMaxY/3 bigMaxY]);
+set(gca,'YTick',[0 bigMaxY]);
 title('P(angle)');
 
 
@@ -48,7 +48,7 @@ end
 ylim([0 bigMaxY]);
 xlim([rangeX(1) rangeX(end)]);
 set(gca,'XTick',[90 270]);
-set(gca,'YTick',[0 bigMaxY/3 2*bigMaxY/3 bigMaxY]);
+set(gca,'YTick',[0 bigMaxY]);
 title('P(angle)');
 line([90 90],ylim(),'Color','k');
 line([270 270],ylim(),'Color','k');
@@ -74,7 +74,7 @@ for epoch = 2:6
     ylim([0 littleMaxY]);
     xlim([rangeX(1) rangeX(end)]);
     set(gca,'XTick',[90 270]);
-    set(gca,'YTick',[0 littleMaxY/3 2*littleMaxY/3 littleMaxY]);
+    set(gca,'YTick',[0 littleMaxY]);
     line([90 90],ylim(),'Color','k');
     line([270 270],ylim(),'Color','k');
     
@@ -87,7 +87,7 @@ for epoch = 2:6
     ylim([0 littleMaxY]);
     xlim([rangeX(1) rangeX(end)]);
     set(gca,'XTick',[90 270]);
-    set(gca,'YTick',[0 littleMaxY/3 2*littleMaxY/3 littleMaxY]);
+    set(gca,'YTick',[0 littleMaxY]);
     line([90 90],ylim(),'Color','k');
     line([270 270],ylim(),'Color','k');
     
