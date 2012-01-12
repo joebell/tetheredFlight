@@ -9,8 +9,9 @@ rangeX = 7.5:7.5:360;
 rangedX = -1080:7.5:1080;
 ranged2X = -300:4:300;
 timeStep = 2;
-bigMaxY = .25;
-littleMaxY = .1;
+bigMaxY = 8;
+littleMaxY = 4;
+nRangeX = size(rangeX,2);
 
 figList{1} = figure();
 
@@ -30,7 +31,7 @@ ylabel('Angle');
 
 subplot(6,6,5); hold on;
 [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
-ns = ns ./ (1000 * postTime);
+ns = ns ./ (sum(ns(1,:))/nRangeX);
 plotBands(rangeX,ns,'r');
 ylim([0 bigMaxY]);
 xlim([rangeX(1) rangeX(end)]);
@@ -70,7 +71,7 @@ for epoch = 2:6
     
     subplot(6,6,(epoch-1)*6 + 5); hold on;
     [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
-    ns = ns ./ (1000 * postTime);
+    ns = ns ./ (sum(ns(1,:))/nRangeX);
     plotBands(rangeX,ns,'r');
     ylim([0 littleMaxY]);
     xlim([rangeX(1) rangeX(end)]);

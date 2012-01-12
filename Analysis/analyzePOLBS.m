@@ -67,7 +67,7 @@ end
 ylim([0 maxY]);
 xlim([rangeX(1) rangeX(end)]);
 set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
+set(gca,'YTick',[0 maxY]);
 title('Vert. Bar P(angle)');
 
 postTime = 120;
@@ -82,7 +82,7 @@ end
 ylim([0 maxY]);
 xlim([rangeX(1) rangeX(end)]);
 set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
+set(gca,'YTick',[0 maxY]);
 title('Box + EV P(angle)');
 
 postTime = 120;
@@ -97,7 +97,7 @@ end
 ylim([0 maxY]);
 xlim([rangeX(1) rangeX(end)]);
 set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
+set(gca,'YTick',[0 maxY]);
 title('Box + Odor P(angle)');
 
 bigTitle(['Experiment: ',experiment]);
