@@ -6,6 +6,8 @@ fileList = returnFileList(experiment);
 rangeX = 3.75:3.75:360;
 rangedX = -1080:7.5:1080;
 ranged2X = -300:4:300;
+nRangeX = size(rangeX,2);
+maxY = .2;
 
 %% First generate OL plots
 OLepochs = [1 12 13];
@@ -57,10 +59,12 @@ postTime = 115;
 epochRanges = OLepochs(1);
 subplot(4,3,10); hold on;
 [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
+ns = ns ./ sum(ns(1,:));
 plotBands(rangeX,ns,'r');
 for i=1:size(ns,1)
     plot(rangeX,ns(i,:));
 end
+ylim([0 maxY]);
 xlim([rangeX(1) rangeX(end)]);
 set(gca,'XTick',[90 270]);
 set(gca,'YTick',[]);
@@ -70,10 +74,12 @@ postTime = 120;
 epochRanges = OLepochs(2);
 subplot(4,3,11); hold on;
 [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
+ns = ns ./ sum(ns(1,:));
 plotBands(rangeX,ns,'r');
 for i=1:size(ns,1)
     plot(rangeX,ns(i,:));
 end
+ylim([0 maxY]);
 xlim([rangeX(1) rangeX(end)]);
 set(gca,'XTick',[90 270]);
 set(gca,'YTick',[]);
@@ -83,10 +89,12 @@ postTime = 120;
 epochRanges = OLepochs(3);
 subplot(4,3,12); hold on;
 [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
+ns = ns ./ sum(ns(1,:));
 plotBands(rangeX,ns,'r');
 for i=1:size(ns,1)
     plot(rangeX,ns(i,:));
 end
+ylim([0 maxY]);
 xlim([rangeX(1) rangeX(end)]);
 set(gca,'XTick',[90 270]);
 set(gca,'YTick',[]);
