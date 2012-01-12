@@ -123,7 +123,6 @@ for nEpoch = 2:6
     epochRanges = nEpoch; preTime = 0; postTime = 120;
     [traces, timeTrace] = accumulateXTraces(fileList,epochRanges, preTime, postTime);
     sinTraces = sin(traces*2*pi/360);
-    disp(size(sinTraces));
     plotBands(timeTrace,sinTraces,'b');
     ylim([-1 1]); set(gca,'YTick',[-1 0 1]);
     xlim([preTime postTime]);
