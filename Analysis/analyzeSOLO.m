@@ -134,11 +134,14 @@ for nEpoch = 2:6
     ind = find(isnan(sinTraces)); sinTraces(ind) = 0;
     meanSin = mean(sinTraces,2);
     Xones = ones(size(sinTraces,1),1) + .2*rand(size(sinTraces,1),1);
-    scatter(meanSin(:),Xones(:),'+'); xlim([-1 1]); ylim([0 2]);
+    scatter(meanSin(:),Xones(:),'o'); xlim([-1 1]); ylim([0 2]);
     line([0 0],ylim(),'Color','k');
     meanMean = mean(meanSin);
     stErr = std(meanSin)./sqrt(size(meanSin(:),1));
-    line([meanMean meanMean], [-.4 .4],'Color','r');
+    line([meanMean meanMean], [-.4 .4]+1,'Color','r');
+    line([meanMean-stErr meanMean+stErr], [0 0]+1,'Color','r');
+    line([meanMean-stErr meanMean-stErr], [-.2 .2]+1,'Color','r');
+    line([meanMean+stErr meanMean+stErr], [-.2 .2]+1,'Color','r');
     set(gca,'YTick',[]);
     set(gca,'XTick',[-1 0 1]);
     
