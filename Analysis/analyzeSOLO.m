@@ -8,6 +8,7 @@ rangeX = 3.75:3.75:360;
 rangedX = -1080:7.5:1080;
 ranged2X = -300:4:300;
 timeStep = 2;
+maxY = .18;
 
 figList{1} = figure();
 
@@ -29,8 +30,7 @@ subplot(6,7,6); hold on;
 [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
 ns = ns ./ (1000 * postTime);
 plotBands(rangeX,ns,'r');
-maxY = max(ns(:));
-ylim([0 maxY*1.05]);
+ylim([0 maxY]);
 xlim([rangeX(1) rangeX(end)]);
 line([90 90],ylim(),'Color','k');
 line([270 270],ylim(),'Color','k');
@@ -44,6 +44,7 @@ subplot(6,7,7); hold on;
 for i=1:size(ns,1)
     plot(rangeX,ns(i,:));
 end
+ylim([0 maxY]);
 xlim([rangeX(1) rangeX(end)]);
 set(gca,'XTick',[90 270]);
 set(gca,'YTick',[0]);
@@ -51,7 +52,6 @@ title('P(angle)');
 line([90 90],ylim(),'Color','k');
 line([270 270],ylim(),'Color','k');
 
-disp(maxY);
 
 for epoch = 2:6
     subplot(6,7,((epoch-1)*7 + 1):((epoch-1)*7 + 5)); hold on;
@@ -70,8 +70,7 @@ for epoch = 2:6
     [ns, rangeX] = accumulateMultiHistogram(fileList,epochRanges, preTime, postTime, rangeX);
     ns = ns ./ (1000 * postTime);
     plotBands(rangeX,ns,'r');
-    maxY = max(ns(:));
-    ylim([0 maxY*1.05]);
+    ylim([0 maxY]);
     xlim([rangeX(1) rangeX(end)]);
     set(gca,'XTick',[90 270]);
     set(gca,'YTick',[]);
@@ -84,8 +83,7 @@ for epoch = 2:6
     for i=1:size(ns,1)
         plot(rangeX,ns(i,:));
     end
-    maxY = max(ns(:));
-    ylim([0 maxY*1.05]);
+    ylim([0 maxY]);
     xlim([rangeX(1) rangeX(end)]);
     set(gca,'XTick',[90 270]);
     set(gca,'YTick',[]);
