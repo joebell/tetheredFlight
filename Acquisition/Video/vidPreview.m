@@ -17,8 +17,8 @@ function vidPreview(obj,event,himage)
         % Send the marked-up image to the preview window
         % set(0,'CurrentFigure',previewFigure);
         set(0,'CurrentFigure',previewFigure);
-        % set(himage, 'CData', frame(480:-1:1,640:-1:1)');   % flip image
-        set(himage, 'CData', frame);
+        set(himage, 'CData', frame(480:-1:1,639:-1:1));   % flip image
+        %set(himage, 'CData', frame); % Upright
     end
 
     
