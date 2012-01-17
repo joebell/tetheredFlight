@@ -255,82 +255,118 @@ title('Box + Odor Model <dWBA/dt>');
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
 
+
 %% OL Time Domain Plots
 
 figList{3} = figure();
 
-EVepochList = 2:11;
+epochList = 2:11;
 preTime = 0;
 postTime = 10;
 
+spaceFactor = 150;
 for nEpoch = 1:10;
     preTime = -2;
     postTime = 11;
-    epochRanges = EVepochList(nEpoch);
-    subplot(10,2,(nEpoch - 1)*2 + 1); hold on;
+    epochRanges = epochList(nEpoch);
+    subplot(1,2,1); hold on;
     [traces, timeTrace] = accumulateWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces,'b');
-    xlim([timeTrace(1) timeTrace(end)]);
-    ylim([-300 300]);
+    plotBands(timeTrace,traces - nEpoch*spaceFactor,'b');
+    line([timeTrace(1) timeTrace(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k');
+    xlim([timeTrace(1) timeTrace(end)]);  
 end
-subplot(10,2,1); title('EV');
-subplot(10,2,11); ylabel('WBA (cV)');
-subplot(10,2,19); xlabel('Time (sec)');
+maxSpan = -(nEpoch+1)*spaceFactor;
+ylim([maxSpan 0]);
+set(gca,'YTick',[]);
+bottomBlock = 7*maxSpan/8;
+fill([-1.6 -1.5 -1.5 -1.6],[bottomBlock bottomBlock bottomBlock+100 bottomBlock+100],'k');
+text(-1.4, bottomBlock, '100 cV','VerticalAlignment','baseline')
+subplot(1,2,1); title('EV');
+subplot(1,2,1); ylabel('WBA (cV)');
+subplot(1,2,1); xlabel('Time (sec)');
 
-odorEpochList = 14:23;
+epochList = 14:23;
+preTime = 0;
+postTime = 10;
+
+spaceFactor = 150;
 for nEpoch = 1:10;
     preTime = -2;
     postTime = 11;
-    epochRanges = odorEpochList(nEpoch);
-    subplot(10,2,(nEpoch - 1)*2 + 2); hold on;
+    epochRanges = epochList(nEpoch);
+    subplot(1,2,2); hold on;
     [traces, timeTrace] = accumulateWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces,'b');
-    xlim([timeTrace(1) timeTrace(end)]);
-    ylim([-300 300]);
+    plotBands(timeTrace,traces - nEpoch*spaceFactor,'b');
+    line([timeTrace(1) timeTrace(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k');
+    xlim([timeTrace(1) timeTrace(end)]);  
 end
-subplot(10,2,2); title('Odor');
-subplot(10,2,12); ylabel('WBA (cV)');
-subplot(10,2,20); xlabel('Time (sec)');
+maxSpan = -(nEpoch+1)*spaceFactor;
+ylim([maxSpan 0]);
+set(gca,'YTick',[]);
+bottomBlock = 7*maxSpan/8;
+fill([-1.6 -1.5 -1.5 -1.6],[bottomBlock bottomBlock bottomBlock+100 bottomBlock+100],'k');
+text(-1.4, bottomBlock, '100 cV','VerticalAlignment','baseline')
+subplot(1,2,2); title('Odor');
+subplot(1,2,2); ylabel('WBA (cV)');
+subplot(1,2,2); xlabel('Time (sec)');
 
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
+
 
 %% OL Time Domain Plots
 
 figList{4} = figure();
 
-EVepochList = 2:11;
+epochList = 2:11;
+preTime = 0;
+postTime = 10;
+
+spaceFactor = 800;
+for nEpoch = 1:10;
+    preTime = -2;
+    postTime = 11;
+    epochRanges = epochList(nEpoch);
+    subplot(1,2,1); hold on;
+    [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
+    plotBands(timeTrace,traces - nEpoch*spaceFactor,'b');
+    line([timeTrace(1) timeTrace(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k');
+    xlim([timeTrace(1) timeTrace(end)]);  
+end
+maxSpan = -(nEpoch+1)*spaceFactor;
+ylim([maxSpan 0]);
+set(gca,'YTick',[]);
+bottomBlock = 7*maxSpan/8;
+fill([-1.6 -1.5 -1.5 -1.6],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
+text(-1.4, bottomBlock, '800 cV/sec','VerticalAlignment','baseline')
+subplot(1,2,1); title('EV');
+subplot(1,2,1); ylabel('dWBA/dt (cV/sec)');
+subplot(1,2,1); xlabel('Time (sec)');
+
+epochList = 14:23;
 preTime = 0;
 postTime = 10;
 
 for nEpoch = 1:10;
     preTime = -2;
     postTime = 11;
-    epochRanges = EVepochList(nEpoch);
-    subplot(10,2,(nEpoch - 1)*2 + 1); hold on;
+    epochRanges = epochList(nEpoch);
+    subplot(1,2,2); hold on;
     [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces,'b');
-    xlim([timeTrace(1) timeTrace(end)]);
-    ylim([-300 300]);
+    plotBands(timeTrace,traces - nEpoch*spaceFactor,'b');
+    line([timeTrace(1) timeTrace(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k');
+    xlim([timeTrace(1) timeTrace(end)]);  
 end
-subplot(10,2,1); title('EV');
-subplot(10,2,11); ylabel('dWBA (cV/sec)');
-subplot(10,2,19); xlabel('Time (sec)');
+maxSpan = -(nEpoch+1)*spaceFactor;
+ylim([maxSpan 0]);
+set(gca,'YTick',[]);
+bottomBlock = 7*maxSpan/8;
+fill([-1.6 -1.5 -1.5 -1.6],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
+text(-1.4, bottomBlock, '800 cV/sec','VerticalAlignment','baseline')
+subplot(1,2,2); title('Odor');
+subplot(1,2,2); ylabel('dWBA/dt (cV/sec)');
+subplot(1,2,2); xlabel('Time (sec)');
 
-odorEpochList = 14:23;
-for nEpoch = 1:10;
-    preTime = -2;
-    postTime = 11;
-    epochRanges = odorEpochList(nEpoch);
-    subplot(10,2,(nEpoch - 1)*2 + 2); hold on;
-    [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces,'b');
-    xlim([timeTrace(1) timeTrace(end)]);
-    ylim([-300 300]);
-end
-subplot(10,2,2); title('Odor');
-subplot(10,2,12); ylabel('dWBA (cV/sec)');
-subplot(10,2,20); xlabel('Time (sec)');
 
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
