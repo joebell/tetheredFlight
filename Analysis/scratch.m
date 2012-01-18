@@ -11,273 +11,118 @@ maxY = 8;
 OLepochs = [1 12 13];
 preTime = 0; 
 
-% %%
-% 
-% figList{2} = figure();
-% preTime = 0;
-% OLepochs = [1 12 13];
-% 
-% postTime = 115;
-% epochRanges = OLepochs(2);
-% subplot(3,3,1); hold on;
-% [n, rangeX, rangedX] = accumulatePhaseHistogram(fileList,epochRanges, preTime, postTime, rangeX, rangedX);
-% h = pcolor(rangeX,rangedX,log(n'));
-% set(h,'EdgeColor','none');
-% xlim([rangeX(1) rangeX(end)]);
-% ylim([rangedX(1) rangedX(end)]);
-% xlabel('Angle (deg)');
-% ylabel('Speed (deg/sec)');
-% title('Vert. Bar log(P(angle,speed))');
-% plot2dFormat();
-% 
-% postTime = 120;
-% epochRanges = OLepochs(2);
-% subplot(3,3,2); hold on;
-% [n, rangeX, rangedX] = accumulatePhaseHistogram(fileList,epochRanges, preTime, postTime, rangeX, rangedX);
-% h = pcolor(rangeX,rangedX,log(n'));
-% set(h,'EdgeColor','none');
-% xlim([rangeX(1) rangeX(end)]);
-% ylim([rangedX(1) rangedX(end)]);
-% xlabel('Angle (deg)');
-% ylabel('Speed (deg/sec)');
-% title('Box + EV log(P(angle,speed))');
-% plot2dFormat();
-% 
-% 
-% postTime = 120;
-% epochRanges = OLepochs(3);
-% subplot(3,3,3); hold on;
-% [n, rangeX, rangedX] = accumulatePhaseHistogram(fileList,epochRanges, preTime, postTime, rangeX, rangedX);
-% h = pcolor(rangeX,rangedX,log(n'));
-% set(h,'EdgeColor','none');
-% xlim([rangeX(1) rangeX(end)]);
-% ylim([rangedX(1) rangedX(end)]);
-% xlabel('Angle (deg)');
-% ylabel('Speed (deg/sec)');
-% title('Box + Odor log(P(angle,speed))');
-% plot2dFormat();
-% 
-% %
-% 
-% 
-% postTime = 115;
-% epochRanges = OLepochs(1);
-% subplot(3,3,4);hold on;
-% [means, n, rangeX, rangedX] = accumulatePhaseMeans(fileList,epochRanges, preTime, postTime, rangeX, rangedX);
-% epochMeans{1} = means;
-% epochNs{1} = n;
-% h = pcolor(rangeX,rangedX,means');
-% set(h,'EdgeColor','none');
-% xlim([rangeX(1) rangeX(end)]);
-% ylim([rangedX(1) rangedX(end)]);
-% caxis([ranged2X(1) ranged2X(end)]);
-% xlabel('Angle (deg)');
-% ylabel('Speed (deg/sec)');
-% title('Vert. Bar <dWBA/dt(angle,speed)>');
-% plot2dFormat();
-% 
-% 
-% postTime = 120;
-% epochRanges = OLepochs(2);
-% subplot(3,3,5);hold on;
-% [means, n, rangeX, rangedX] = accumulatePhaseMeans(fileList,epochRanges, preTime, postTime, rangeX, rangedX);
-% epochMeans{2} = means;
-% epochNs{2} = n;
-% h = pcolor(rangeX,rangedX,means');
-% set(h,'EdgeColor','none');
-% xlim([rangeX(1) rangeX(end)]);
-% ylim([rangedX(1) rangedX(end)]);
-% caxis([ranged2X(1) ranged2X(end)]);
-% xlabel('Angle (deg)');
-% ylabel('Speed (deg/sec)');
-% title('Box + EV <dWBA/dt(angle,speed)>');
-% plot2dFormat();
-% 
-% 
-% postTime = 120;
-% epochRanges = OLepochs(3);
-% subplot(3,3,6);hold on;
-% [means, n, rangeX, rangedX] = accumulatePhaseMeans(fileList,epochRanges, preTime, postTime, rangeX, rangedX);
-% epochMeans{3} = means;
-% epochNs{3} = n;
-% h = pcolor(rangeX,rangedX,means');
-% set(h,'EdgeColor','none');
-% xlim([rangeX(1) rangeX(end)]);
-% ylim([rangedX(1) rangedX(end)]);
-% caxis([ranged2X(1) ranged2X(end)]);
-% xlabel('Angle (deg)');
-% ylabel('Speed (deg/sec)');
-% title('Box + Odor <dWBA/dt(angle,speed)>');
-% plot2dFormat();
-% 
-% %
-% 
-% postTime = 115;
-% epochRanges = OLepochs(1);
-% subplot(3,3,7); hold on;
-% modelFun = fitModel(epochMeans{1}, epochNs{1}, rangeX, rangedX);
-% epochModels{1} = modelFun;
-% [X,dX] = meshgrid(rangeX,rangedX);
-% responses = modelFun(X,dX);
-% h = pcolor(rangeX,rangedX,responses);
-% xlim([rangeX(1) rangeX(end)]);
-% ylim([rangedX(1) rangedX(end)]);
-% caxis([ranged2X(1) ranged2X(end)]);
-% set(h,'EdgeColor','none');
-% set(h,'ButtonDownFcn',{@plotTrajectory,modelFun});
-% plot2dFormat();
-% title('Vert. Bar Model <dWBA/dt>');
-% 
-% postTime = 120;
-% epochRanges = OLepochs(2);
-% subplot(3,3,8); hold on;
-% modelFun = fitModel(epochMeans{2}, epochNs{2}, rangeX, rangedX);
-% epochModels{2} = modelFun;
-% [X,dX] = meshgrid(rangeX,rangedX);
-% responses = modelFun(X,dX);
-% h = pcolor(rangeX,rangedX,responses);
-% xlim([rangeX(1) rangeX(end)]);
-% ylim([rangedX(1) rangedX(end)]);
-% caxis([ranged2X(1) ranged2X(end)]);
-% set(h,'EdgeColor','none');
-% set(h,'ButtonDownFcn',{@plotTrajectory,modelFun});
-% plot2dFormat();
-% title('Box + EV Model <dWBA/dt>');
-% 
-% postTime = 120;
-% epochRanges = OLepochs(3);
-% subplot(3,3,9); hold on;
-% modelFun = fitModel(epochMeans{3}, epochNs{3}, rangeX, rangedX);
-% epochModels{3} = modelFun;
-% [X,dX] = meshgrid(rangeX,rangedX);
-% responses = modelFun(X,dX);
-% h = pcolor(rangeX,rangedX,responses);
-% xlim([rangeX(1) rangeX(end)]);
-% ylim([rangedX(1) rangedX(end)]);
-% caxis([ranged2X(1) ranged2X(end)]);
-% set(h,'EdgeColor','none');
-% set(h,'ButtonDownFcn',{@plotTrajectory,modelFun});
-% plot2dFormat();
-% title('Box + Odor Model <dWBA/dt>');
-% 
-% bigTitle(['Experiment: ',experiment]);
-% codeStampFigure(gcf);
-
-subplot(1,4,1);
-preTime = 0;
-postTime = 10;
-
-     epochList = 2:11;
-     epochRanges = epochList(epochN);
-     [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
-     plotBands(rangeX,dWBAtraces,'b');
-     % for i=1:size(WBAtraces,1)
-     %     plot(rangeX,dWBAtraces(i,:));
-     % end
-
-
-
-
-spaceFactor = 600;
-spinVals = [720 540 360 180 90 -90 -180 -360 -540 -720];
+figure();
 
 subplot(1,4,1); hold on;
-for epochN = 1:10
-     epochList = 2:11;
-     epochRanges = epochList(epochN);
-     [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
-     plotBands(rangeX,dWBAtraces - epochN*spaceFactor,'b');
-     % for i=1:size(WBAtraces,1)
-     %     plot(rangeX,dWBAtraces(i,:) - epochN*spaceFactor);
-     % end
-    line([rangeX(1) rangeX(end)],[-epochN*spaceFactor -epochN*spaceFactor],'Color','k');
+preTime = 0;
+postTime = 10;
+spaceFactor = 600;
+
+epochList = 2:11;
+for nEpoch = 1:10
+    epochRanges = epochList(nEpoch);
+ 
+    [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
+    subplot(1,4,1); hold on;
+    plotBands(rangeX,dWBAtraces - spaceFactor*nEpoch,'b');
+    subplot(1,4,3); hold on;
+    plotBands(rangeX,dWBAtraces - spaceFactor*nEpoch,'b');
 end
-set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
-title('EV Data');
-maxSpan = -(epochN+1)*spaceFactor;
+epochList = 14:23;
+for nEpoch = 1:10
+    epochRanges = epochList(nEpoch);
+ 
+    [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
+    subplot(1,4,1); hold on;
+    plotBands(rangeX,dWBAtraces - spaceFactor*nEpoch,'r');
+    subplot(1,4,4); hold on;
+    plotBands(rangeX,dWBAtraces - spaceFactor*nEpoch,'r');
+    subplot(1,4,1); hold on;
+    line([rangeX(1) rangeX(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k'); 
+end
+maxSpan = -(nEpoch+1)*spaceFactor;
+xlim([rangeX(1) rangeX(end)]); 
 ylim([maxSpan 0]);
 set(gca,'YTick',[]);
+set(gca,'XTick',[90 270]);
+line([90 90], ylim(),'Color','k');
+line([270 270], ylim(),'Color','k');
 bottomBlock = 31*maxSpan/32;
-fill([30 35 35 30],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
-text(40, bottomBlock, ' 800 cV/sec','VerticalAlignment','baseline')
-xlim([rangeX(1) rangeX(end)]);
-xlabel('Angle (deg.)');
-ylabel('dWBA/dt (cV/sec)');
-line([90 90],ylim(),'Color','k');
-line([270 270],ylim(),'Color','k');
+fill([15 20 20 15],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
+text(25, bottomBlock, '600 cV/sec','VerticalAlignment','baseline')
+subplot(1,4,1); title('\color{blue} EV Data \color{black}+ \color{red}Odor Data');
+subplot(1,4,1); ylabel('dWBA/dt (cV/sec)');
+subplot(1,4,1); xlabel('Angle (deg)');
 
 subplot(1,4,2); hold on;
-for epochN = 1:10
-     epochList = 14:23;
-     epochRanges = epochList(epochN);
-     [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
-     plotBands(rangeX,dWBAtraces - epochN*spaceFactor,'r');
-     % for i=1:size(WBAtraces,1)
-     %     plot(rangeX,dWBAtraces(i,:) - epochN*spaceFactor);
-     % end
-    line([rangeX(1) rangeX(end)],[-epochN*spaceFactor -epochN*spaceFactor],'Color','k');
-end
-set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
-title('Odor Data');
-maxSpan = -(epochN+1)*spaceFactor;
-ylim([maxSpan 0]);
-set(gca,'YTick',[]);
-bottomBlock = 31*maxSpan/32;
-fill([30 35 35 30],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
-text(40, bottomBlock, ' 800 cV/sec','VerticalAlignment','baseline')
-xlim([rangeX(1) rangeX(end)]);
-xlabel('Angle (deg.)');
-ylabel('dWBA/dt (cV/sec)');
-line([90 90],ylim(),'Color','k');
-line([270 270],ylim(),'Color','k');
+preTime = 0;
+postTime = 10;
+spaceFactor = 600;
 
-
-subplot(1,4,3); hold on;
-for epochN = 1:10
-    spins = ones(1,size(rangeX,2)) .* spinVals(epochN);
+spinVals = [720 540 360 180 90 -90 -180 -360 -540 -720];
+for nEpoch = 1:10
+    spins = ones(1,size(rangeX,2)) .* spinVals(nEpoch);
     evModel = epochModels{2};
     evResp = evModel(rangeX,spins);
-    plot(rangeX,evResp - epochN*spaceFactor,'Color','b','LineWidth',1);
-    line([rangeX(1) rangeX(end)],[-epochN*spaceFactor -epochN*spaceFactor],'Color','k');
+    subplot(1,4,2); hold on;
+    plot(rangeX,evResp - spaceFactor*nEpoch,'Color','c','LineWidth',2);
+    subplot(1,4,3); hold on;
+    plot(rangeX,evResp - spaceFactor*nEpoch,'Color','c','LineWidth',2);
+    odorModel = epochModels{3};
+    odorResp = odorModel(rangeX,spins);
+    subplot(1,4,2); hold on;
+    plot(rangeX,odorResp - spaceFactor*nEpoch,'Color','m','LineWidth',2);
+    subplot(1,4,4); hold on;
+    plot(rangeX,odorResp - spaceFactor*nEpoch,'Color','m','LineWidth',2);
+    line([rangeX(1) rangeX(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k'); 
+    subplot(1,4,3); hold on;
+    line([rangeX(1) rangeX(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k'); 
+    subplot(1,4,2); hold on;
+    line([rangeX(1) rangeX(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k'); 
 end
-set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
-title('EV Model');
-maxSpan = -(epochN+1)*spaceFactor;
+maxSpan = -(nEpoch+1)*spaceFactor;
+xlim([rangeX(1) rangeX(end)]); 
 ylim([maxSpan 0]);
 set(gca,'YTick',[]);
+set(gca,'XTick',[90 270]);
+line([90 90], ylim(),'Color','k');
+line([270 270], ylim(),'Color','k');
 bottomBlock = 31*maxSpan/32;
-fill([30 35 35 30],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
-text(40, bottomBlock, ' 800 cV/sec','VerticalAlignment','baseline')
-xlim([rangeX(1) rangeX(end)]);
-xlabel('Angle (deg.)');
+fill([15 20 20 15],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
+text(25, bottomBlock, '600 cV/sec','VerticalAlignment','baseline')
+subplot(1,4,2); title('\color{cyan} EV Model \color{black}+ \color{magenta}Odor Model');
+subplot(1,4,2); ylabel('dWBA/dt (cV/sec)');
+subplot(1,4,2); xlabel('Angle (deg)');
+
+subplot(1,4,3); hold on;
+maxSpan = -(nEpoch+1)*spaceFactor;
+xlim([rangeX(1) rangeX(end)]); 
+ylim([maxSpan 0]);
+set(gca,'YTick',[]);
+set(gca,'XTick',[90 270]);
+line([90 90], ylim(),'Color','k');
+line([270 270], ylim(),'Color','k');
+bottomBlock = 31*maxSpan/32;
+fill([15 20 20 15],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
+text(25, bottomBlock, '600 cV/sec','VerticalAlignment','baseline')
+title('\color{blue} EV Data \color{black}+ \color{cyan}EV Model');
 ylabel('dWBA/dt (cV/sec)');
-line([90 90],ylim(),'Color','k');
-line([270 270],ylim(),'Color','k');
+xlabel('Angle (deg)');
 
 subplot(1,4,4); hold on;
-for epochN = 1:10
-    spins = ones(1,size(rangeX,2)) .* spinVals(epochN);
-    evModel = epochModels{3};
-    evResp = evModel(rangeX,spins);
-    plot(rangeX,evResp - epochN*spaceFactor,'Color','r','LineWidth',1);
-    line([rangeX(1) rangeX(end)],[-epochN*spaceFactor -epochN*spaceFactor],'Color','k');
-end
-set(gca,'XTick',[90 270]);
-set(gca,'YTick',[]);
-title('Odor Model');
-maxSpan = -(epochN+1)*spaceFactor;
+maxSpan = -(nEpoch+1)*spaceFactor;
+xlim([rangeX(1) rangeX(end)]); 
 ylim([maxSpan 0]);
 set(gca,'YTick',[]);
+set(gca,'XTick',[90 270]);
+line([90 90], ylim(),'Color','k');
+line([270 270], ylim(),'Color','k');
 bottomBlock = 31*maxSpan/32;
-fill([30 35 35 30],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
-text(40, bottomBlock, ' 800 cV/sec','VerticalAlignment','baseline')
-xlim([rangeX(1) rangeX(end)]);
-xlabel('Angle (deg.)');
+fill([15 20 20 15],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
+text(25, bottomBlock, '600 cV/sec','VerticalAlignment','baseline')
+title('\color{red} Odor Data \color{black}+ \color{magenta}Odor Model');
 ylabel('dWBA/dt (cV/sec)');
-line([90 90],ylim(),'Color','k');
-line([270 270],ylim(),'Color','k');
+xlabel('Angle (deg)');
+
 
 

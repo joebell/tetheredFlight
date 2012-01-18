@@ -8,15 +8,13 @@ meanTrace = mean(dataMatrix,1);
 semTrace  = std(dataMatrix,1)./sqrt(size(dataMatrix,1));
 hold on;
 
-h = area([time;time]',[(meanTrace-semTrace);(2*semTrace)]',-1);
+%h = area([time;time]',[(meanTrace-semTrace);(2*semTrace)]',-1);
+h = joeArea(time,meanTrace-semTrace,meanTrace+semTrace);
 
         set(h,'EdgeColor','none');
-        set(h,'FaceColor','none');
-        if lineColor == 'r'
-            set(h(2),'FaceColor',[1 .8 .8]);
-        else    
-            set(h(2),'FaceColor',[.8 .8 1]);
-        end
+        set(h,'FaceColor',lineColor);
+        set(h,'FaceAlpha',.3);
+
         
 plot(time,meanTrace,'Color',lineColor,'LineWidth',1);
 
