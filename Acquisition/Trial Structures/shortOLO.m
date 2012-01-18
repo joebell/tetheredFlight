@@ -8,7 +8,7 @@ center = 0;
 
 % Format: {time, visStim}
 %          [Mode, K0, K1, K2]
-visStimN = [1, 0, -2, center];
+visStimN = [1, 0, -6, center];
 LaserOn  = '3c00';
 LaserOff = '0000';
 odorOn = 'ffff'; % (front half)
