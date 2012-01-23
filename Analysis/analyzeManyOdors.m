@@ -86,7 +86,7 @@ end
 for figureN = 1:4
     figure(figureN);
     figList{figureN} = gcf;
-    codeStampFigure();
+    codeStampFigure(gcf);
 end
 saveMultiPage(figList,'MultiOdorSummary');
     
