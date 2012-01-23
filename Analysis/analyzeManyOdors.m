@@ -109,14 +109,13 @@ for odorN = 1:size(odorList,2)
         line([0 0],ylim(),'Color','k');
         meanMean = mean(meanSin);
         stErr = std(meanSin)./sqrt(size(meanSin(:),1));
-        line([meanMean meanMean], [-.4 .4]+1,'Color','r');
-        line([meanMean-stErr meanMean+stErr], [0 0]+1,'Color','r');
-        line([meanMean-stErr meanMean-stErr], [-.2 .2]+1,'Color','r');
-        line([meanMean+stErr meanMean+stErr], [-.2 .2]+1,'Color','r');
+        line([meanMean meanMean], [-.4 .4]- odorN,'Color','r');
+        line([meanMean-stErr meanMean+stErr], [0 0]-odorN,'Color','r');
+        line([meanMean-stErr meanMean-stErr], [-.2 .2]-odorN,'Color','r');
+        line([meanMean+stErr meanMean+stErr], [-.2 .2]-odorN,'Color','r');
         set(gca,'YTick',[]);
         set(gca,'XTick',[-1 0 1]);
-        ylabel('Mean +/- SEM');
-        
+        box on;
     end
       
 end
