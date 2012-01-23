@@ -116,6 +116,9 @@ for odorN = 1:size(odorList,2)
         set(gca,'YTick',[]);
         set(gca,'XTick',[-1 0 1]);
         box on;
+        if epoch == 1
+            text(-1.8,-odorN,odorList{odorN},'VerticalAlignment','baseline');
+        end
     end
       
 end
