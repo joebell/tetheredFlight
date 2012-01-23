@@ -109,19 +109,27 @@ for odorN = 1:size(odorList,2)
         line([0 0],ylim(),'Color','k');
         meanMean = mean(meanSin);
         stErr = std(meanSin)./sqrt(size(meanSin(:),1));
-        line([meanMean meanMean], [-.4 .4]- odorN,'Color','r');
-        line([meanMean-stErr meanMean+stErr], [0 0]-odorN,'Color','r');
-        line([meanMean-stErr meanMean-stErr], [-.2 .2]-odorN,'Color','r');
-        line([meanMean+stErr meanMean+stErr], [-.2 .2]-odorN,'Color','r');
+        line([meanMean meanMean], [-.4 .4]- odorN,'Color','b');
+        line([meanMean-stErr meanMean+stErr], [0 0]-odorN,'Color','b');
+        line([meanMean-stErr meanMean-stErr], [-.2 .2]-odorN,'Color','b');
+        line([meanMean+stErr meanMean+stErr], [-.2 .2]-odorN,'Color','b');
         set(gca,'YTick',[]);
         set(gca,'XTick',[-1 0 1]);
         box on;
         if epoch == 1
             text(-1.8,-odorN,odorList{odorN},'VerticalAlignment','baseline');
         end
-    end
-      
+    end   
 end
+
+figure(5);
+subplot(1,6,1); hold on; title('Vert. Bar');
+subplot(1,6,2); hold on; title('Box');
+subplot(1,6,3); hold on; title('Box + EV');
+subplot(1,6,4); hold on; title('Box + Odor');
+subplot(1,6,5); hold on; title('Box + EV');
+subplot(1,6,6); hold on; title('Box + Odor');
+    
 
 for figureN = 1:5
     figure(figureN);
@@ -129,5 +137,12 @@ for figureN = 1:5
     codeStampFigure(gcf);
 end
 
-saveMultiPage(figList,'MultiOdorSummary');
+reOrgFigList{1} = figList{5};
+reOrgFigList{2} = figList{1};
+reOrgFigList{3} = figList{2};
+reOrgFigList{4} = figList{3};
+reOrgFigList{5} = figList{4};
+
+
+saveMultiPage(reOrgFigList,'MultiOdorSummary');
     
