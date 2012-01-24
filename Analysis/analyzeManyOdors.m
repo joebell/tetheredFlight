@@ -137,12 +137,6 @@ for figureN = 1:5
     codeStampFigure(gcf);
 end
 
-reOrgFigList{1} = figList{5};
-reOrgFigList{2} = figList{1};
-reOrgFigList{3} = figList{2};
-reOrgFigList{4} = figList{3};
-reOrgFigList{5} = figList{4};
 
-
-saveMultiPage(reOrgFigList,'MultiOdorSummary');
+saveMultiPage(figList,'MultiOdorSummary');
     
