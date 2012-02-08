@@ -1,6 +1,6 @@
 %% Realtime tethered flight experiment controller
 
-function RTTF(trialStructureName, experiment, recVideo) 
+function RTTF(trialStructureName, experiment, recVideo)  
 
 global analogIn;
 global digitalIO;
