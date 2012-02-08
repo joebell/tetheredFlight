@@ -1,4 +1,4 @@
-function analyzeManyOdors() 
+function analyzeManyOdors()   
 
 % Histogram range parameters
 rangeX = 7.5:7.5:360;
