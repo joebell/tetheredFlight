@@ -24,7 +24,7 @@ odorList = {...
 for odorN = 1:size(odorList,2)
     experiment = [baseCode, odorList{odorN}];
     
-    analyzeSOLO(experiment); clear all; close all;
+    analyzeSOLO(experiment); close all;
 end
 
 disp('Done Analyzing');
