@@ -14,7 +14,6 @@ function [n, rangeX, rangeT] = accumulate2DHistogram(fileList,epochRanges, preTi
         loadData(fileList(fileN));
         for epochN = 1:size(epochRanges,2)
             epoch = epochRanges(epochN);
-            
             timeList = nonzeros(histogramBounds(epoch,:));
             for pair=1:2:size(timeList,1)
                 timeList(pair+1) = timeList(pair) + postTime;
