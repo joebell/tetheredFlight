@@ -1,4 +1,4 @@
-function analyzePOLBS(experiment)
+function rosePOLBS(experiment)
 
 fileList = returnFileList(experiment);
 
@@ -255,143 +255,29 @@ title('Box + Odor Model <dWBA/dt>');
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
 
-
-%% OL Time Domain Plots
+%% Generate OL-CL model comparisons
 
 figList{3} = figure();
 
-epochList = 2:11;
+subplot(6,2,1); hold on;
 preTime = 0;
 postTime = 10;
-
-spaceFactor = 150;
-for nEpoch = 1:10;
-    preTime = -2;
-    postTime = 11;
-    epochRanges = epochList(nEpoch);
-    subplot(1,2,1); hold on;
-    [traces, timeTrace] = accumulateWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces - nEpoch*spaceFactor,'b');
-    line([timeTrace(1) timeTrace(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k');
-    xlim([timeTrace(1) timeTrace(end)]);  
-end
-maxSpan = -(nEpoch+1)*spaceFactor;
-ylim([maxSpan 0]);
-set(gca,'YTick',[]);
-bottomBlock = 7*maxSpan/8;
-fill([-1.6 -1.5 -1.5 -1.6],[bottomBlock bottomBlock bottomBlock+100 bottomBlock+100],'k');
-text(-1.4, bottomBlock, '100 cV','VerticalAlignment','baseline')
-subplot(1,2,1); title('EV');
-subplot(1,2,1); ylabel('WBA (cV)');
-subplot(1,2,1); xlabel('Time (sec)');
-
-epochList = 14:23;
-preTime = 0;
-postTime = 10;
-
-spaceFactor = 150;
-for nEpoch = 1:10;
-    preTime = -2;
-    postTime = 11;
-    epochRanges = epochList(nEpoch);
-    subplot(1,2,2); hold on;
-    [traces, timeTrace] = accumulateWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces - nEpoch*spaceFactor,'b');
-    line([timeTrace(1) timeTrace(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k');
-    xlim([timeTrace(1) timeTrace(end)]);  
-end
-maxSpan = -(nEpoch+1)*spaceFactor;
-ylim([maxSpan 0]);
-set(gca,'YTick',[]);
-bottomBlock = 7*maxSpan/8;
-fill([-1.6 -1.5 -1.5 -1.6],[bottomBlock bottomBlock bottomBlock+100 bottomBlock+100],'k');
-text(-1.4, bottomBlock, '100 cV','VerticalAlignment','baseline')
-subplot(1,2,2); title('Odor');
-subplot(1,2,2); ylabel('WBA (cV)');
-subplot(1,2,2); xlabel('Time (sec)');
-
-bigTitle(['Experiment: ',experiment]);
-codeStampFigure(gcf);
-
-
-%% OL Time Domain Plots
-
-figList{4} = figure();
-
-epochList = 2:11;
-preTime = 0;
-postTime = 10;
-
-spaceFactor = 800;
-for nEpoch = 1:10;
-    preTime = -2;
-    postTime = 11;
-    epochRanges = epochList(nEpoch);
-    subplot(1,2,1); hold on;
-    [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces - nEpoch*spaceFactor,'b');
-    line([timeTrace(1) timeTrace(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k');
-    xlim([timeTrace(1) timeTrace(end)]);  
-end
-maxSpan = -(nEpoch+1)*spaceFactor;
-ylim([maxSpan 0]);
-set(gca,'YTick',[]);
-bottomBlock = 7*maxSpan/8;
-fill([-1.6 -1.5 -1.5 -1.6],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
-text(-1.4, bottomBlock, '800 cV/sec','VerticalAlignment','baseline')
-subplot(1,2,1); title('EV');
-subplot(1,2,1); ylabel('dWBA/dt (cV/sec)');
-subplot(1,2,1); xlabel('Time (sec)');
-
-epochList = 14:23;
-preTime = 0;
-postTime = 10;
-
-for nEpoch = 1:10;
-    preTime = -2;
-    postTime = 11;
-    epochRanges = epochList(nEpoch);
-    subplot(1,2,2); hold on;
-    [traces, timeTrace] = accumulatedWBATraces(fileList,epochRanges, preTime, postTime);
-    plotBands(timeTrace,traces - nEpoch*spaceFactor,'b');
-    line([timeTrace(1) timeTrace(end)],[-nEpoch*spaceFactor -nEpoch*spaceFactor],'Color','k');
-    xlim([timeTrace(1) timeTrace(end)]);  
-end
-maxSpan = -(nEpoch+1)*spaceFactor;
-ylim([maxSpan 0]);
-set(gca,'YTick',[]);
-bottomBlock = 7*maxSpan/8;
-fill([-1.6 -1.5 -1.5 -1.6],[bottomBlock bottomBlock bottomBlock+spaceFactor bottomBlock+spaceFactor],'k');
-text(-1.4, bottomBlock, '800 cV/sec','VerticalAlignment','baseline')
-subplot(1,2,2); title('Odor');
-subplot(1,2,2); ylabel('dWBA/dt (cV/sec)');
-subplot(1,2,2); xlabel('Time (sec)');
-
-
-bigTitle(['Experiment: ',experiment]);
-codeStampFigure(gcf);
-
-%% Generate OL-CL model comparisons
-
-figList{5} = figure();
-
-subplot(1,4,1); hold on;
-preTime = 0;
-postTime = 10;
+useEpochs = [2,9,3,8,5,6];
 spaceFactor = 600;
 
 epochList = 2:11;
-for nEpoch = 1:10
+for nEpoch = useEpochs
     epochRanges = epochList(nEpoch);
  
     [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
+    size(dWBAtraces)
     subplot(1,4,1); hold on;
     plotBands(rangeX,dWBAtraces - spaceFactor*nEpoch,'b');
     subplot(1,4,3); hold on;
     plotBands(rangeX,dWBAtraces - spaceFactor*nEpoch,'b');
 end
 epochList = 14:23;
-for nEpoch = 1:10
+for nEpoch = useEpochs
     epochRanges = epochList(nEpoch);
  
     [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
@@ -422,7 +308,7 @@ postTime = 10;
 spaceFactor = 600;
 
 spinVals = [720 540 360 180 90 -90 -180 -360 -540 -720];
-for nEpoch = 1:10
+for nEpoch = useEpochs
     spins = ones(1,size(rangeX,2)) .* spinVals(nEpoch);
     evModel = epochModels{2};
     evResp = evModel(rangeX,spins);
@@ -488,99 +374,3 @@ xlabel('Angle (deg)');
 
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
-
-%%
-
-figList{6} = figure();
-
-subplot(10,4,1);
-preTime = 0;
-postTime = 10;
-
-epochList = 2:11;
-for epochN = 1:10
-    epochRanges = epochList(epochN);
-    subplot(10,4, 4*(epochN-1) + 1); hold on;
-    
-    [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
-    %plotBands(rangeX,dWBAtraces,'b');
-    for i=1:size(WBAtraces,1)
-        plot(rangeX,dWBAtraces(i,:),'b');
-    end
-    xlim([rangeX(1) rangeX(end)]);
-    ylim([-500 500]);
-    set(gca,'XTick',[90 270]);
-    line(xlim(),[0 0],'Color','k');
-    line([90 90],ylim(),'Color','k');
-    line([270 270],ylim(),'Color','k');
-end
-subplot(10,4,1); title('EV Data');
-subplot(10,4,4*5 + 1); ylabel('dWBA/dt (cV/sec)');
-
-epochList = 14:23;
-for epochN = 1:10
-    epochRanges = epochList(epochN);
-    subplot(10,4, 4*(epochN-1) + 2); hold on;
-    
-    [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
-    %plotBands(rangeX,dWBAtraces,'r');
-    for i=1:size(WBAtraces,1)
-        plot(rangeX,dWBAtraces(i,:),'r');
-    end
-    xlim([rangeX(1) rangeX(end)]);
-    ylim([-500 500]);
-    set(gca,'XTick',[90 270]);
-    line(xlim(),[0 0],'Color','k');
-    line([90 90],ylim(),'Color','k');
-    line([270 270],ylim(),'Color','k');
-end
-subplot(10,4,2); title('Odor Data');
-subplot(10,4,4*5 + 2); ylabel('dWBA/dt (cV/sec)');
-
-epochList = 2:11;
-for epochN = 1:10
-    epochRanges = epochList(epochN);
-    subplot(10,4, 4*(epochN-1) + 3); hold on;
-    
-    [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
-    %plotBands(rangeX,dWBAtraces,'b');
-    for i=1:size(WBAtraces,1)
-        plot(rangeX,WBAtraces(i,:),'b');
-    end
-    xlim([rangeX(1) rangeX(end)]);
-    ylim([-500 500]);
-    set(gca,'XTick',[90 270]);
-    line(xlim(),[0 0],'Color','k');
-    line([90 90],ylim(),'Color','k');
-    line([270 270],ylim(),'Color','k');
-end
-subplot(10,4,3); title('EV Data');
-subplot(10,4,4*5 + 3); ylabel('WBA (cV)');
-
-epochList = 14:23;
-for epochN = 1:10
-    epochRanges = epochList(epochN);
-    subplot(10,4, 4*(epochN-1) + 4); hold on;
-    
-    [WBAtraces, dWBAtraces, rangeX] = accumulateWBAbyAngle(fileList,epochRanges, preTime, postTime,rangeX);
-    %plotBands(rangeX,dWBAtraces,'r');
-    for i=1:size(WBAtraces,1)
-        plot(rangeX,WBAtraces(i,:),'r');
-    end
-    xlim([rangeX(1) rangeX(end)]);
-    ylim([-500 500]);
-    set(gca,'XTick',[90 270]);
-    line(xlim(),[0 0],'Color','k');
-    line([90 90],ylim(),'Color','k');
-    line([270 270],ylim(),'Color','k');
-end
-subplot(10,4,4); title('Odor Data');
-subplot(10,4,4*5 + 4); ylabel('WBA (cV)');
-
-bigTitle(['Experiment: ',experiment]);
-codeStampFigure(gcf);
-
-
-%% Save figs!
-
-saveMultiPage(figList,experiment);
