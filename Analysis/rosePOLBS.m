@@ -255,6 +255,9 @@ title('Box + Odor Model <dWBA/dt>');
 bigTitle(['Experiment: ',experiment]);
 codeStampFigure(gcf);
 
+save('epochModels.mat','epochModels');
+return;
+
 %% Generate OL-CL model comparisons
 
 figList{3} = figure();
