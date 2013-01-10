@@ -260,6 +260,8 @@ return;
 
 %% Generate OL-CL model comparisons
 
+load('epochModels.mat');
+
 figList{3} = figure();
 
 subplot(6,2,1); hold on;
